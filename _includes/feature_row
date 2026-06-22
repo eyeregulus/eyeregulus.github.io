@@ -51,7 +51,7 @@
           {% endif %}
 
           {% if f.url and f.btn_label %}
-            <p>
+            <div class="archive__item-buttons">
               {% comment %}
                 [수정 2] 
                 기존 'Google Play' 버튼에도 target="_blank"를 추가하여
@@ -87,7 +87,7 @@
                 {{ f.btn_label4 }}
               </a>
               {% endif %}
-            </p>
+            </div>
           {% endif %}
         </div>
 

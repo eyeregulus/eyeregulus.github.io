@@ -246,3 +246,113 @@ body {
   margin-bottom: 0 !important;
   padding-bottom: 1em !important;
 }
+
+/* Custom App Feature Row Styles */
+.apps-feature-row {
+  .feature__wrapper {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 30px !important;
+    border-bottom: none !important;
+    float: none !important;
+  }
+
+  .feature__item {
+    float: none !important;
+    width: 100% !important;
+    max-width: 420px !important;
+    margin-bottom: 2em !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    padding: 1.5em !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+
+    &:hover {
+      transform: translateY(-8px) !important;
+      box-shadow: 0 8px 25px rgba(255, 255, 255, 0.15) !important;
+      border-color: rgba(255, 255, 255, 0.2) !important;
+    }
+
+    .archive__item {
+      display: flex !important;
+      flex-direction: column !important;
+      height: 100% !important;
+      width: 100% !important;
+    }
+
+    .archive__item-teaser {
+      margin-bottom: 1.2em !important;
+      border-radius: 8px !important;
+      overflow: hidden !important;
+    }
+
+    .archive__item-body {
+      display: flex !important;
+      flex-direction: column !important;
+      flex-grow: 1 !important;
+      padding: 0 !important;
+    }
+
+    .archive__item-title {
+      margin-top: 0 !important;
+      margin-bottom: 0.5em !important;
+      font-size: 1.4em !important;
+      text-align: center !important;
+      font-weight: 700 !important;
+    }
+
+    .archive__item-excerpt {
+      font-size: 0.95em !important;
+      line-height: 1.6 !important;
+      text-align: center !important;
+      opacity: 0.85 !important;
+      margin-bottom: 1.5em !important;
+    }
+  }
+}
+
+/* Button layout inside grid (Default flex wrap for other pages, grid for apps page) */
+.archive__item-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto; /* Push buttons to the bottom of the card */
+
+  a.btn {
+    margin: 0 !important;
+    text-align: center;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    font-size: 0.9em !important;
+    padding: 0.6em 0.8em !important;
+    box-sizing: border-box !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    /* Turn off the absolute-overlay that breaks multiple buttons */
+    &::before {
+      display: none !important;
+    }
+  }
+}
+
+/* 2x2 Grid for the Apps Page specifically */
+.apps-feature-row .archive__item-buttons {
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+  gap: 10px !important;
+  width: 100% !important;
+
+  a.btn {
+    width: 100% !important;
+    font-size: 0.85em !important;
+    padding: 0.7em 0.3em !important;
+    letter-spacing: -0.02em !important;
+  }
+}

@@ -23,8 +23,8 @@ feature_row:
     btn_label4: "사용방법"
     btn4_class: "btn--success"
   - image_path: /assets/images/Category/Numerology calculator.png
-    alt: "Numerology calculator"
-    title: "Numerology calculator"
+    alt: "Numerology"
+    title: "Numerology"
     excerpt: "수비학 계산을 쉽게 할 수 있는 계산기입니다."
     url: "https://play.google.com/store/apps/details?id=com.numerology.finderapp"
     btn_label: "Google Play"
@@ -43,4 +43,6 @@ changefreq: daily
 priority : 1.0
 ---
 
-{% include feature_row features=page.feature_row %}
+<div class="apps-feature-row">
+  {% include feature_row features=page.feature_row %}
+</div>
