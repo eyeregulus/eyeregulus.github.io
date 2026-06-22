@@ -29,9 +29,15 @@ feature_row:
     url: "https://play.google.com/store/apps/details?id=com.numerology.finderapp"
     btn_label: "Google Play"
     btn_class: "btn--primary"
-    url2: "/어플리케이션 사용방법/num-app-usage/"
-    btn_label2: "사용방법"
-    btn2_class: "btn--success"
+    url2: "/privacy-numerology/"
+    btn_label2: "개인정보처리방침"
+    btn2_class: "btn--info"
+    url3: "/terms-numerology/"
+    btn_label3: "이용약관"
+    btn3_class: "btn--info"
+    url4: "/어플리케이션 사용방법/num-app-usage/"
+    btn_label4: "사용방법"
+    btn4_class: "btn--success"
 sitemap:
 changefreq: daily
 priority : 1.0
