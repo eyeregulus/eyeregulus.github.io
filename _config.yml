@@ -21,7 +21,7 @@ title                    : "Eyeregulus"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "eyeregulus"
-description              : "현대점성학"
+description              : ""
 url                      : "https://eyeregulus.github.io" # 나중에 도메인을 구매하고 했을때는 Url을 바꿔주면 될거야. ㅡ 와.... 그래. 
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "Eyeregulus/Eyeregulus.github.io" # GitHub username/repo-name for Giscus
