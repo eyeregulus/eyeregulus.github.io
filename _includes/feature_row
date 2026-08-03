@@ -1,98 +1,84 @@
-{% comment %} 
-  /_includes/feature_row.html 파일의 전체 내용입니다.
-  기존 내용을 지우고 이 코드로 대체하세요.
+{% comment %}
+/_includes/feature_row.html 파일의 전체 내용입니다.
+기존 내용을 지우고 이 코드로 대체하세요.
 {% endcomment %}
 
 {% if include.id %}
-  {% assign feature_row = page[include.id] %}
+{% assign feature_row = page[include.id] %}
 {% else %}
-  {% assign feature_row = page.feature_row %}
+{% assign feature_row = page.feature_row %}
 {% endif %}
 
 <div class="feature__wrapper">
 
   {% for f in feature_row %}
-    <div class="feature__item{% if include.type %}--{{ include.type }}{% endif %}">
-      <div class="archive__item">
+  <div class="feature__item{% if include.type %}--{{ include.type }}{% endif %}">
+    <div class="archive__item">
 
-        {% if f.image_path %}
-          <div class="archive__item-teaser">
-            {% comment %}
-              [수정 2 & 3] 
-              이미지를 <a> 태그로 감싸고, target="_blank"를 추가해 
-              '새 탭에서 열리는 클릭 가능한 링크'로 만듭니다.
-            {% endcomment %}
-            <a href="{{ f.url | relative_url }}" target="_blank" rel="noopener noreferrer">
-              <img src="{{ f.image_path | relative_url }}"
-                   alt="{% if f.alt %}{{ f.alt }}{% endif %}"
-                   {% comment %} 
-                     [수정 1] 
-                     인라인 스타일을 추가하여 이미지가 컨테이너에 맞게 조절되고
-                     Ctrl+줌/축소 시 텍스트와 함께 스케일링되도록 합니다.
-                   {% endcomment %}
-                   style="width: 100%; height: auto; display: block;"
-              >
-            </a>
-            {% if f.image_caption %}
-              <span class="archive__item-caption">{{ f.image_caption | markdownify | remove: "<p>" | remove: "</p>" }}</span>
-            {% endif %}
-          </div>
+      {% if f.image_path %}
+      <div class="archive__item-teaser">
+        {% comment %}
+        [수정 2 & 3]
+        이미지를 <a> 태그로 감싸고, target="_blank"를 추가해
+          '새 탭에서 열리는 클릭 가능한 링크'로 만듭니다.
+          {% endcomment %}
+          <a href="{{ f.url | relative_url }}" target="_blank" rel="noopener noreferrer">
+            <img src="{{ f.image_path | relative_url }}" alt="{% if f.alt %}{{ f.alt }}{% endif %}" {% comment %} [수정 1]
+              인라인 스타일을 추가하여 이미지가 컨테이너에 맞게 조절되고 Ctrl+줌/축소 시 텍스트와 함께 스케일링되도록 합니다. {% endcomment %}
+              style="width: 100%; height: auto; display: block;">
+          </a>
+          {% if f.image_caption %}
+          <span class="archive__item-caption">{{ f.image_caption | markdownify | remove: "<p>" | remove: "</p>"
+            }}</span>
+          {% endif %}
+      </div>
+      {% endif %}
+
+      <div class="archive__item-body">
+        {% if f.title %}
+        <h2 class="archive__item-title">{{ f.title }}</h2>
         {% endif %}
 
-        <div class="archive__item-body">
-          {% if f.title %}
-            <h2 class="archive__item-title">{{ f.title }}</h2>
-          {% endif %}
+        {% if f.excerpt %}
+        <div class="archive__item-excerpt">
+          {{ f.excerpt | markdownify }}
+        </div>
+        {% endif %}
 
-          {% if f.excerpt %}
-            <div class="archive__item-excerpt">
-              {{ f.excerpt | markdownify }}
-            </div>
+        {% if f.url and f.btn_label %}
+        <div class="archive__item-buttons">
+          {% comment %}
+          [수정 2]
+          기존 'Google Play' 버튼에도 target="_blank"를 추가하여
+          새 탭에서 열리도록 통일합니다.
+          {% endcomment %}
+          <a href="{{ f.url | relative_url }}" class="btn {{ f.btn_class }}" target="_blank" rel="noopener noreferrer">
+            {{ f.btn_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}
+          </a>
+          {% if f.url2 and f.btn_label2 %}
+          <a href="{{ f.url2 | relative_url }}" class="btn {{ f.btn2_class | default: f.btn_class }}" target="_blank"
+            rel="noopener noreferrer">
+            {{ f.btn_label2 }}
+          </a>
           {% endif %}
-
-          {% if f.url and f.btn_label %}
-            <div class="archive__item-buttons">
-              {% comment %}
-                [수정 2] 
-                기존 'Google Play' 버튼에도 target="_blank"를 추가하여
-                새 탭에서 열리도록 통일합니다.
-              {% endcomment %}
-              <a href="{{ f.url | relative_url }}" 
-                 class="btn {{ f.btn_class }}" 
-                 target="_blank" 
-                 rel="noopener noreferrer">
-                {{ f.btn_label | default: site.data.ui-text[site.locale].more_label | default: "Learn More" }}
-              </a>
-              {% if f.url2 and f.btn_label2 %}
-              <a href="{{ f.url2 | relative_url }}" 
-                 class="btn {{ f.btn2_class | default: f.btn_class }}" 
-                 target="_blank" 
-                 rel="noopener noreferrer">
-                {{ f.btn_label2 }}
-              </a>
-              {% endif %}
-              {% if f.url3 and f.btn_label3 %}
-              <a href="{{ f.url3 | relative_url }}" 
-                 class="btn {{ f.btn3_class | default: f.btn_class }}" 
-                 target="_blank" 
-                 rel="noopener noreferrer">
-                {{ f.btn_label3 }}
-              </a>
-              {% endif %}
-              {% if f.url4 and f.btn_label4 %}
-              <a href="{{ f.url4 | relative_url }}" 
-                 class="btn {{ f.btn4_class | default: f.btn_class }}" 
-                 target="_blank" 
-                 rel="noopener noreferrer">
-                {{ f.btn_label4 }}
-              </a>
-              {% endif %}
-            </div>
+          {% if f.url3 and f.btn_label3 %}
+          <a href="{{ f.url3 | relative_url }}" class="btn {{ f.btn3_class | default: f.btn_class }}" target="_blank"
+            rel="noopener noreferrer">
+            {{ f.btn_label3 }}
+          </a>
+          {% endif %}
+          {% if f.url4 and f.btn_label4 %}
+          <a href="{{ f.url4 | relative_url }}" class="btn {{ f.btn4_class | default: f.btn_class }}" target="_blank"
+            rel="noopener noreferrer">
+            {{ f.btn_label4 }}
+          </a>
           {% endif %}
         </div>
-
+        {% endif %}
       </div>
+
     </div>
+  </div>
   {% endfor %}
 
 </div>
