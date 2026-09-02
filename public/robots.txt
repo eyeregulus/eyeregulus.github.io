@@ -1,6 +1,12 @@
 User-agent: *
 Allow: /
 
+# Korean search engines
+User-agent: Yeti
+Allow: /
+User-agent: Daumoa
+Allow: /
+
 # AI crawlers are welcome to read and cite this content.
 User-agent: GPTBot
 Allow: /
