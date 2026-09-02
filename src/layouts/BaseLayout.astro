@@ -59,6 +59,10 @@ const schemas = [...siteSchema(), ...jsonLd];
     <title>{seoTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={SITE.name} />
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={SITE.ogLocale} />

@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { SITE, YOUTUBE_URL, X_URL, APPS } from '../consts';
+import { SITE, YOUTUBE_URL, X_URL, APPS, PROFILE } from '../consts';
 import {
   getSortedPosts,
   postHref,
@@ -51,6 +51,11 @@ export const GET: APIRoute = async () => {
 > ${SITE.description}
 > 운영자 1인의 현대점성학·수비학 블로그. 모든 글은 한국어이며 직접 쓴 1차 콘텐츠입니다.
 
+## 시작점
+
+- 공식 링크 모음(Linktree 대체): ${SITE.url}/links/
+- 운영자: ${PROFILE.displayName} — ${PROFILE.summary}
+
 ## 글
 
 ${postLines}
@@ -69,6 +74,7 @@ ${appLines}
 
 ## 채널·프로필
 
+- 링크 모음(공식): ${SITE.url}/links/
 - YouTube: ${YOUTUBE_URL}
 - X: ${X_URL}
 - 이메일: eyeregulus@gmail.com

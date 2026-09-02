@@ -24,6 +24,26 @@ export const AUTHOR = {
   email: 'eyeregulus@gmail.com',
 };
 
+// The person behind the brand — powers schema.org Person + the /links/ hub page
+// so Google/AI resolve "아이레굴루스" to one entity across YouTube, blog and apps.
+export const PROFILE = {
+  displayName: 'Eye of regulus',
+  alternateNames: ['아이레굴루스', 'Eyeregulus', 'Eye of regulus Astrology'],
+  avatar: '/assets/images/Category/Lion_1.png',
+  tagline: '사자의 눈으로 세상을 헤아립니다',
+  taglineEn: 'Fathoming the world with the eyes of a lion',
+  summary:
+    '현대점성학과 수비학으로 나를 이해하는 이야기를 글과 영상으로 나눕니다. 보이드 오브 코스, 네이탈 차트, 수비학 계산 앱을 직접 만들어 배포하는 1인 창작자·개발자.',
+  knowsAbout: [
+    '현대점성학',
+    '수비학',
+    '보이드 오브 코스',
+    '네이탈 차트',
+    'Astrology',
+    'Numerology',
+  ],
+};
+
 export const TAGLINE = '사자의 눈으로 세상을 헤아립니다';
 export const INTRO = '현대점성학과 수비학으로 나를 이해하는 이야기.';
 
@@ -81,6 +101,60 @@ export const APPS = [
       { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.numerology.finderapp' },
       { label: '사용법', url: '/어플리케이션 사용방법/num-app-usage/' },
     ],
+  },
+];
+
+// Curated link hub shown on /links/ — the Linktree replacement.
+// Order matters: it's the tap order on the page and the ItemList in schema.
+export const HUB_LINKS: {
+  label: string;
+  note?: string;
+  url: string;
+  featured?: boolean;
+}[] = [
+  {
+    label: 'YouTube 채널',
+    note: '영상으로 만나는 현대점성학',
+    url: YOUTUBE_URL,
+    featured: true,
+  },
+  {
+    label: '블로그 — 현대점성학·수비학 글',
+    note: '12별자리 · 보이드 타임 · 출생 시간 찾기',
+    url: '/',
+  },
+  {
+    label: 'Regulus Chart — 네이탈·트랜짓 차트 앱',
+    note: 'Google Play · 상담용, 오프라인 계산',
+    url: 'https://play.google.com/store/apps/details?id=dev.regulus.chart',
+  },
+  {
+    label: 'Void of Course — 공허 시간 알림 앱',
+    note: 'Android · Google Play',
+    url: 'https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse',
+  },
+  {
+    label: 'Void of Course — iPhone',
+    note: 'iOS · App Store',
+    url: 'https://apps.apple.com/kr/app/void-of-course/id6777887938',
+  },
+  {
+    label: 'Numerology — 수비학 계산기 앱',
+    note: 'Google Play',
+    url: 'https://play.google.com/store/apps/details?id=com.numerology.finderapp',
+  },
+  {
+    label: '앱 소개와 사용법 전체 보기',
+    url: '/apps/',
+  },
+  {
+    label: 'X (Twitter) — @eye_of_regulus',
+    url: X_URL,
+  },
+  {
+    label: '이메일 문의',
+    note: 'eyeregulus@gmail.com',
+    url: 'mailto:eyeregulus@gmail.com',
   },
 ];
 

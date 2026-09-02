@@ -1,0 +1,51 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PROFILE, HUB_LINKS, encodeHref } from '../consts';
+import { profilePageSchema } from '../lib/schema';
+
+const title = `${PROFILE.displayName} — 모든 링크`;
+const description =
+  `${PROFILE.displayName}(아이레굴루스)의 공식 링크 모음. YouTube 채널, 현대점성학·수비학 블로그, ` +
+  '그리고 직접 만든 점성 앱(Void of Course · Regulus Chart · 수비학 계산기)을 한곳에서.';
+
+const href = (url: string) => (url.startsWith('/') ? encodeHref(url) : url);
+const isExternal = (url: string) => url.startsWith('http');
+---
+
+<BaseLayout title={title} description={description} jsonLd={profilePageSchema()}>
+  <main class="shell hub">
+    <header class="hub__head">
+      <img
+        class="hub__avatar"
+        src={PROFILE.avatar}
+        alt={PROFILE.displayName}
+        width="96"
+        height="96"
+      />
+      <h1 class="hub__name">{PROFILE.displayName}</h1>
+      <p class="hub__tag">{PROFILE.tagline}</p>
+      <p class="hub__tag hub__tag--en">{PROFILE.taglineEn}</p>
+    </header>
+
+    <nav class="hub__links" aria-label="링크 모음">
+      {
+        HUB_LINKS.map((l) => (
+          <a
+            class:list={['hub__link', { 'hub__link--featured': l.featured }]}
+            href={href(l.url)}
+            {...(isExternal(l.url)
+              ? { target: '_blank', rel: 'noopener noreferrer' }
+              : {})}
+          >
+            <span class="hub__link-label">{l.label}</span>
+            {l.note && <span class="hub__link-note">{l.note}</span>}
+          </a>
+        ))
+      }
+    </nav>
+
+    <p class="hub__foot">
+      <a href="/">eyeregulus.dev</a> — 이 페이지가 공식 링크 모음입니다.
+    </p>
+  </main>
+</BaseLayout>
