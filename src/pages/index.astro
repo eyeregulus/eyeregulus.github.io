@@ -1,68 +1,88 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
-import FeatureRow from '../components/FeatureRow.astro';
-import ArchiveSingle from '../components/ArchiveSingle.astro';
+import {
+  SITE,
+  TAGLINE,
+  INTRO,
+  APPS,
+  CATEGORY_DESC,
+  CATEGORY_ORDER,
+  categorySlug,
+  encodeHref,
+} from '../consts';
 import { getSortedPosts } from '../lib/posts';
 
-const recent = (await getSortedPosts()).slice(0, 3);
-
-const features = [
-  {
-    image_path: '/assets/images/Category/Lion_1.png',
-    alt: '내가 바라보는 세상',
-    title: '내가 바라보는 세상',
-    excerpt: '아이레굴루스란?',
-    url: '/categories/ego/',
-    btn_label: '자세히 보기',
-    btn_class: 'btn--primary',
-  },
-  {
-    image_path: '/assets/images/Category/Astro.png',
-    alt: '현대점성학 공통',
-    title: '현대점성학 공통',
-    excerpt: '현대점성학의 다양한 공통 주제',
-    url: '/categories/astrology-common/',
-    btn_label: '자세히 보기',
-    btn_class: 'btn--primary',
-  },
-  {
-    image_path: '/assets/images/Category/Beginner.png',
-    alt: '현대점성학 초급',
-    title: '현대점성학 초급',
-    excerpt: '점성학의 기본적인 개념',
-    url: '/categories/astrology-beginner/',
-    btn_label: '자세히 보기',
-    btn_class: 'btn--primary',
-  },
+const posts = await getSortedPosts();
+const counts = new Map<string, number>();
+for (const p of posts) {
+  for (const c of p.data.categories) counts.set(c, (counts.get(c) ?? 0) + 1);
+}
+const categories = [
+  ...CATEGORY_ORDER.filter((c) => counts.has(c)),
+  ...[...counts.keys()].filter((c) => !CATEGORY_ORDER.includes(c)),
 ];
 ---
 
-<BaseLayout
-  layout="splash"
-  title="Eyeregulus"
-  description=""
-  ogImage="/assets/images/Category/_Background.png"
-  isHome={true}
->
-  <PageHero
-    title="Eyeregulus"
-    overlayImage="/assets/images/Category/_Background.png"
-    overlayFilter={0.5}
-    actions={[{ label: 'About', url: '/about/' }]}
-  />
+<BaseLayout title={SITE.title} description={INTRO} ogImage={SITE.defaultOgImage} isHome={true}>
+  <main class="shell">
+    <div class="pageintro">
+      <h1>{TAGLINE}</h1>
+      <p>{INTRO}</p>
+    </div>
 
-  <div id="main" role="main">
-    <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
-      <section class="page__content" itemprop="text">
-        <FeatureRow features={features} />
+    <section class="home-sec">
+      <h2 class="home-h">만든 앱</h2>
+      <div class="apps">
+        {
+          APPS.map((app) => (
+            <div class="app">
+              <img
+                class="app__mark"
+                src={app.icon}
+                alt=""
+                width="120"
+                height="120"
+                loading="lazy"
+              />
+              <div>
+                <a href={app.links[0].url} class="app__name">
+                  {app.name}
+                </a>
+                <p class="app__desc">{app.desc}</p>
+              </div>
+              <div class="app__links">
+                {app.links.map((l) => (
+                  <a
+                    href={encodeHref(l.url)}
+                    {...(l.url.startsWith('http')
+                      ? { target: '_blank', rel: 'noopener noreferrer' }
+                      : {})}
+                  >
+                    {l.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
 
-        <h3 class="archive__subtitle">가장 최근 글</h3>
-
-        <div class="entries-list">
-          {recent.map((post) => <ArchiveSingle post={post} type="list" />)}
-        </div>
-      </section>
-    </article>
-  </div>
+    <section>
+      <h2 class="home-h">글 읽기</h2>
+      <nav class="cats" aria-label="갈래">
+        {
+          categories.map((name) => (
+            <a class="cat" href={`/categories/${categorySlug(name)}/`}>
+              <span class="cat__name">{name}</span>
+              <span class="cat__count">{counts.get(name)}편</span>
+              {CATEGORY_DESC[name] && (
+                <span class="cat__desc">{CATEGORY_DESC[name]}</span>
+              )}
+            </a>
+          ))
+        }
+      </nav>
+    </section>
+  </main>
 </BaseLayout>

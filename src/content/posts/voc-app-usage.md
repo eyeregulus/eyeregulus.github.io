@@ -23,7 +23,7 @@ tags:
   - Moon Phase of Course
 pinned: true
 feature_row:
-  - image_path: /assets/images/Category/Void of course.png
+  - image_path: /assets/images/apps/void-of-course.png
     alt: "Void of course"
     title: "Void of course"
     excerpt: "달의 공허 시간을 알려주는 어플리케이션입니다."

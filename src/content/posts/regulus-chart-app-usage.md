@@ -21,7 +21,7 @@ tags:
   - Aspect
 pinned: true
 feature_row:
-  - image_path: /assets/images/Category/Regulus Chart.png
+  - image_path: /assets/images/apps/regulus-chart.png
     alt: "Regulus Chart"
     title: "Regulus Chart"
     excerpt: "네이탈·트랜짓 점성 차트를 오프라인에서 그려주는 상담용 앱입니다."

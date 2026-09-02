@@ -1,51 +1,36 @@
 ---
+import '../styles/global.css';
 import { SITE } from '../consts';
 import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
-  /** body class suffix: splash | single | archive */
-  layout: 'splash' | 'single' | 'archive';
   title: string;
   description?: string;
-  /** absolute or root-relative image URL for og:image */
   ogImage?: string;
   ogType?: 'website' | 'article';
   publishedTime?: string;
   isHome?: boolean;
-  bodyClass?: string;
 }
 
 const {
-  layout,
   title,
   description = '',
   ogImage,
   ogType = 'website',
   publishedTime,
   isHome = false,
-  bodyClass = '',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
-
-// seo.html title rule: keep as-is when it already contains the site title,
-// otherwise append " - Eyeregulus".
 const seoTitle = title.includes(SITE.title)
   ? title
   : `${title} ${SITE.titleSeparator} ${SITE.title}`;
-
 const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
 ---
 
 <!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
-  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang={SITE.locale} class="no-js">
+<html lang={SITE.locale}>
   <head>
     <meta charset="utf-8" />
 
@@ -89,6 +74,7 @@ const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
       rel="alternate"
       title={`${SITE.title} Feed`}
     />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     {isHome && (
       <script
@@ -106,81 +92,32 @@ const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
       name="google-site-verification"
       content={SITE.googleSiteVerification}
     />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
 
-    <script is:inline>
-      document.documentElement.className =
-        document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
-    </script>
-
-    <link rel="sitemap" href="/sitemap-index.xml" />
-
-    <!-- For all browsers -->
-    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      rel="preload"
-      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"
-      as="style"
-      onload="this.onload=null;this.rel='stylesheet'"
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap"
     />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"
-      /></noscript
-    >
   </head>
 
-  <body class={`layout--${layout}${bodyClass ? ' ' + bodyClass : ''}`} dir="ltr">
+  <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${SITE.gtmId}`}
+        src="https://www.googletagmanager.com/ns.html?id=GTM-PTHH9S4T"
         height="0"
         width="0"
         style="display:none;visibility:hidden"></iframe></noscript
     >
-    <!-- End Google Tag Manager (noscript) -->
-
-    <nav class="skip-links">
-      <ul>
-        <li>
-          <a href="#site-nav" class="screen-reader-shortcut"
-            >Skip to primary navigation</a
-          >
-        </li>
-        <li>
-          <a href="#main" class="screen-reader-shortcut">Skip to content</a>
-        </li>
-        <li>
-          <a href="#footer" class="screen-reader-shortcut">Skip to footer</a>
-        </li>
-      </ul>
-    </nav>
 
     <Masthead />
 
-    <div class="initial-content">
-      <slot />
-    </div>
+    <slot />
 
-    <div id="footer" class="page__footer">
-      <footer>
-        <Footer />
-      </footer>
-    </div>
-
-    <script is:inline src="/assets/js/vendor/jquery/jquery-3.6.0.js"></script>
-    <script is:inline src="/assets/js/plugins/gumshoe.js"></script>
-    <script is:inline src="/assets/js/plugins/jquery.ba-throttle-debounce.js"
-    ></script>
-    <script is:inline src="/assets/js/plugins/jquery.fitvids.js"></script>
-    <script is:inline src="/assets/js/plugins/jquery.greedy-navigation.js"
-    ></script>
-    <script is:inline src="/assets/js/plugins/jquery.magnific-popup.js"></script>
-    <script is:inline src="/assets/js/plugins/smooth-scroll.js"></script>
-    <script is:inline src="/assets/js/_main.js"></script>
+    <Footer />
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -195,28 +132,5 @@ const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
       gtag('js', new Date());
       gtag('config', 'GTM-PWXGJ4JB', { anonymize_ip: true });
     </script>
-
-    <!-- Back to Top Button -->
-    <a id="back-to-top" href="#" class="back-to-top">
-      <i class="fas fa-arrow-up"></i>
-    </a>
-    <script is:inline>
-      document.addEventListener('DOMContentLoaded', function () {
-        var backToTop = document.getElementById('back-to-top');
-        window.addEventListener('scroll', function () {
-          if (window.pageYOffset > 100) {
-            backToTop.style.display = 'block';
-          } else {
-            backToTop.style.display = 'none';
-          }
-        });
-        backToTop.addEventListener('click', function (e) {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-      });
-    </script>
-
-    <script is:inline src="/assets/js/starfield.js"></script>
   </body>
 </html>

@@ -1,18 +1,35 @@
 ---
-import AuthorProfile from './AuthorProfile.astro';
-import SidebarCategories from './SidebarCategories.astro';
+import { AUTHOR, categorySlug } from '../consts';
+import { getSortedPosts } from '../lib/posts';
 
 interface Props {
-  authorProfile?: boolean;
+  activeCategory?: string;
 }
-const { authorProfile = false } = Astro.props;
+const { activeCategory } = Astro.props;
+
+const posts = await getSortedPosts();
+const counts = new Map<string, number>();
+for (const p of posts) {
+  for (const c of p.data.categories) counts.set(c, (counts.get(c) ?? 0) + 1);
+}
+const categories = [...counts.keys()].sort((a, b) => a.localeCompare(b, 'ko'));
 ---
 
-{
-  authorProfile && (
-    <div class="sidebar sticky">
-      <AuthorProfile />
-      <SidebarCategories />
-    </div>
-  )
-}
+<aside class="side">
+  <a href="/" class="side__author">{AUTHOR.name}</a>
+  <p class="side__bio">사자의 눈으로 세상을 헤아립니다.</p>
+
+  <p class="side__label">Categories</p>
+  <div class="side__list">
+    {
+      categories.map((name) => (
+        <a
+          href={`/categories/${categorySlug(name)}/`}
+          aria-current={name === activeCategory ? 'page' : undefined}
+        >
+          {name} <span class="c">{counts.get(name)}</span>
+        </a>
+      ))
+    }
+  </div>
+</aside>

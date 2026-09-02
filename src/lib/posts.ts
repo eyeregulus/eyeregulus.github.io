@@ -59,13 +59,12 @@ export function stripToText(md: string): string {
     .replace(/\s+/g, ' ');
 }
 
-/** Jekyll read-time string: "less than 1 minute read" / "1 minute read" / "N minute read". */
+/** Read time, Korean: "1분 미만" / "N분". */
 export function readTime(post: Post): string {
   const words = stripToText(post.body ?? '').split(/\s+/).filter(Boolean).length;
   const wpm = SITE.wordsPerMinute;
-  if (words < wpm) return 'less than 1 minute read';
-  if (words === wpm) return '1 minute read';
-  return `${Math.floor(words / wpm)} minute read`;
+  if (words < wpm) return '1분 미만';
+  return `${Math.max(1, Math.floor(words / wpm))}분`;
 }
 
 export { categorySlug };

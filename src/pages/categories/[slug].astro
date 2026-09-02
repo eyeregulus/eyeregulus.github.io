@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
 import ArchiveSingle from '../../components/ArchiveSingle.astro';
 import { getSortedPosts, categorySlug } from '../../lib/posts';
-import { CATEGORY_MAP } from '../../consts';
 
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
@@ -13,8 +13,6 @@ export async function getStaticPaths() {
       byCat.get(c)!.push(p);
     }
   }
-  // Emit an archive for every category that has posts (all use their mapped
-  // English slug, matching the old /categories/<slug>/ permalinks).
   return [...byCat.entries()].map(([name, catPosts]) => {
     const pinned = catPosts.filter((p) => p.data.pinned);
     const regular = catPosts.filter((p) => !p.data.pinned);
@@ -28,13 +26,14 @@ export async function getStaticPaths() {
 const { name, posts } = Astro.props;
 ---
 
-<BaseLayout layout="archive" title={name} description="">
-  <div id="main" role="main">
-    <div class="archive">
-      <h1 id="page-title" class="page__title">{name}</h1>
-      <div class="entries-list">
-        {posts.map((post) => <ArchiveSingle post={post} type="list" />)}
+<BaseLayout title={name} description="">
+  <div class="shell shell--split">
+    <Sidebar activeCategory={name} />
+    <main>
+      <h1 class="page-title">{name}</h1>
+      <div class="list">
+        {posts.map((post) => <ArchiveSingle post={post} />)}
       </div>
-    </div>
+    </main>
   </div>
 </BaseLayout>

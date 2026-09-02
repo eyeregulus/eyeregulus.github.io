@@ -1,35 +1,21 @@
 ---
 import type { Post } from '../lib/posts';
-import { postHref, readTime, excerptText } from '../lib/posts';
-import PageMeta from './PageMeta.astro';
+import { postHref, excerptText } from '../lib/posts';
 
 interface Props {
   post: Post;
-  type?: 'list' | 'grid';
+  showExcerpt?: boolean;
 }
-const { post, type = 'list' } = Astro.props;
+const { post, showExcerpt = false } = Astro.props;
 
 const url = postHref(post);
-const title = post.data.title;
-const excerpt = post.data.feature_row?.[0]?.title ?? excerptText(post, 160);
+const d = post.data.date;
+const dateStr = `${d.getUTCFullYear()}. ${d.getUTCMonth() + 1}. ${d.getUTCDate()}.`;
+const excerpt = post.data.feature_row?.[0]?.title ?? excerptText(post, 140);
 ---
 
-<div class={`${type}__item`}>
-  <article
-    class="archive__item"
-    itemscope
-    itemtype="https://schema.org/CreativeWork"
-  >
-    <h2 class="archive__item-title no_toc" itemprop="headline">
-      <a href={url} rel="permalink">{title}</a>
-    </h2>
-    <PageMeta readTime={readTime(post)} type={type} />
-    {
-      excerpt && (
-        <p class="archive__item-excerpt" itemprop="description">
-          {excerpt}
-        </p>
-      )
-    }
-  </article>
-</div>
+<a class="item" href={url}>
+  <span class="item__date">{dateStr}</span>
+  <span class="item__title">{post.data.title}</span>
+  {showExcerpt && excerpt && <span class="item__excerpt">{excerpt}</span>}
+</a>

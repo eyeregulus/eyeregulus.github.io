@@ -1,56 +1,21 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import PageHero from '../components/PageHero.astro';
 import FeatureRow from '../components/FeatureRow.astro';
 
 interface Props {
   title: string;
   description?: string;
-  overlayImage?: string;
-  overlayFilter?: string | number;
   features?: any[];
-  featureWrapperClass?: string;
 }
-const {
-  title,
-  description = '',
-  overlayImage,
-  overlayFilter,
-  features,
-  featureWrapperClass,
-} = Astro.props;
+const { title, description = '', features } = Astro.props;
 ---
 
-<BaseLayout
-  layout="splash"
-  title={title}
-  description={description}
-  ogImage={overlayImage}
->
-  {
-    overlayImage && (
-      <PageHero
-        title={title}
-        overlayImage={overlayImage}
-        overlayFilter={overlayFilter}
-      />
-    )
-  }
-
-  <div id="main" role="main">
-    <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
-      <section class="page__content" itemprop="text">
-        {
-          features && featureWrapperClass ? (
-            <div class={featureWrapperClass}>
-              <FeatureRow features={features} />
-            </div>
-          ) : features ? (
-            <FeatureRow features={features} />
-          ) : null
-        }
-        <slot />
-      </section>
-    </article>
-  </div>
+<BaseLayout title={title} description={description}>
+  <main class="shell">
+    <h1 class="page-title">{title}</h1>
+    {features && <FeatureRow features={features} />}
+    <div class="prose">
+      <slot />
+    </div>
+  </main>
 </BaseLayout>
