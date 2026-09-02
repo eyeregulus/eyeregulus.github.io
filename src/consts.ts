@@ -87,9 +87,9 @@ export const CATEGORY_DESC: Record<string, string> = {
 // Order categories appear in on the home page.
 export const CATEGORY_ORDER = [
   '내가 바라보는 세상',
-  '현대점성학 초급',
-  '현대점성학 공통',
   '어플리케이션 사용방법',
+  '현대점성학 공통',
+  '현대점성학 초급',
 ];
 
 // Footer follow links (_config.yml -> footer.links, only those with a url)
