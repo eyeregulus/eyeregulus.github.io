@@ -109,57 +109,14 @@ export const APPS = [
 ];
 
 // Curated link hub shown on /links/ — the Linktree replacement.
-// Order matters: it's the tap order on the page and the ItemList in schema.
-export const HUB_LINKS: {
-  label: string;
-  note?: string;
-  url: string;
-  featured?: boolean;
-}[] = [
-  {
-    label: 'YouTube 채널',
-    note: '영상으로 만나는 현대점성학',
-    url: YOUTUBE_URL,
-    featured: true,
-  },
-  {
-    label: '블로그 — 현대점성학·수비학 글',
-    note: '12별자리 · 보이드 타임 · 출생 시간 찾기',
-    url: '/',
-  },
-  {
-    label: 'Regulus Chart — 네이탈·트랜짓 차트 앱',
-    note: 'Google Play · 상담용, 오프라인 계산',
-    url: 'https://play.google.com/store/apps/details?id=dev.regulus.chart',
-  },
-  {
-    label: 'Void of Course — 공허 시간 알림 앱',
-    note: 'Android · Google Play',
-    url: 'https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse',
-  },
-  {
-    label: 'Void of Course — iPhone',
-    note: 'iOS · App Store',
-    url: 'https://apps.apple.com/kr/app/void-of-course/id6777887938',
-  },
-  {
-    label: 'Numerology — 수비학 계산기 앱',
-    note: 'Google Play',
-    url: 'https://play.google.com/store/apps/details?id=com.numerology.finderapp',
-  },
-  {
-    label: '앱 소개와 사용법 전체 보기',
-    url: '/apps/',
-  },
-  {
-    label: 'X (Twitter) — @eye_of_regulus',
-    url: X_URL,
-  },
-  {
-    label: '이메일 문의',
-    note: 'eyeregulus@gmail.com',
-    url: 'mailto:eyeregulus@gmail.com',
-  },
+// Kept deliberately short: one tap-target per line, no sub-text.
+// Order = tap order on the page and the ItemList in schema.
+export const HUB_LINKS: { label: string; url: string }[] = [
+  { label: '블로그', url: '/' },
+  { label: '앱', url: '/apps/' },
+  { label: 'YouTube', url: YOUTUBE_URL },
+  { label: 'X', url: X_URL },
+  { label: '이메일', url: 'mailto:eyeregulus@gmail.com' },
 ];
 
 // One-line blurb per category, shown on the home index.
