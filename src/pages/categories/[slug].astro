@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Sidebar from '../../components/Sidebar.astro';
 import ArchiveSingle from '../../components/ArchiveSingle.astro';
 import { getSortedPosts, categorySlug } from '../../lib/posts';
+import { CATEGORY_DESC } from '../../consts';
 
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
@@ -24,9 +25,12 @@ export async function getStaticPaths() {
 }
 
 const { name, posts } = Astro.props;
+const desc =
+  (CATEGORY_DESC[name] ? CATEGORY_DESC[name] + ' — ' : '') +
+  `아이레굴루스 「${name}」 카테고리, 글 ${posts.length}편.`;
 ---
 
-<BaseLayout title={name} description="">
+<BaseLayout title={name} description={desc}>
   <div class="shell shell--split">
     <Sidebar activeCategory={name} />
     <main>

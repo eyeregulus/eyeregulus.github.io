@@ -1,5 +1,6 @@
 ---
 title: 보이드 오브 코스 Privacy Policy
+description: "Void of Course(보이드 오브 코스) 앱 개인정보처리방침."
 permalink: /privacy-void-of-course/
 layout: single
 ---

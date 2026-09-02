@@ -1,5 +1,6 @@
 ---
 title: Apps
+description: "아이레굴루스가 만든 점성학·수비학 앱 — Regulus Chart, Void of Course, 수비학 계산기. Google Play·App Store 링크와 사용법."
 permalink: /apps/
 layout: splash
 overlay_image: /assets/images/Category/_Background.jpg

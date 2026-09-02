@@ -11,12 +11,13 @@ import {
 import BaseLayout from './BaseLayout.astro';
 import Sidebar from '../components/Sidebar.astro';
 import FeatureRow from '../components/FeatureRow.astro';
+import { postSchema } from '../lib/schema';
 
 interface Props {
   post: Post;
 }
 const { post } = Astro.props;
-const { title, date, tags, categories, feature_row } = post.data;
+const { title, date, updated, tags, categories, feature_row } = post.data;
 
 const all = await getSortedPosts();
 const idx = all.findIndex((p) => p.id === post.id);
@@ -24,14 +25,31 @@ const olderPost = all[idx + 1];
 const newerPost = all[idx - 1];
 
 const category = categories[0];
-const description = excerptText(post, 200);
+const description = post.data.description ?? excerptText(post, 160);
+const href = postHref(post);
+const categoryUrl = category ? `/categories/${categorySlug(category)}/` : undefined;
 
-const pad = (n: number) => String(n).padStart(2, '0');
-const iso = `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}T00:00:00+00:00`;
+const toIso = (d: Date) =>
+  `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}-${String(
+    d.getUTCDate(),
+  ).padStart(2, '0')}T00:00:00+00:00`;
+const iso = toIso(date);
+const isoMod = updated ? toIso(updated) : undefined;
 const dateStr = `${date.getUTCFullYear()}. ${date.getUTCMonth() + 1}. ${date.getUTCDate()}.`;
 
 const sortedTags = [...tags].sort((a, b) => a.localeCompare(b, 'ko'));
 const ogImage = feature_row?.[0]?.image_path;
+
+const jsonLd = postSchema({
+  title,
+  description,
+  url: href,
+  datePublished: iso,
+  dateModified: isoMod,
+  image: ogImage,
+  category,
+  categoryUrl,
+});
 ---
 
 <BaseLayout
@@ -40,6 +58,8 @@ const ogImage = feature_row?.[0]?.image_path;
   ogImage={ogImage}
   ogType="article"
   publishedTime={iso}
+  modifiedTime={isoMod}
+  jsonLd={jsonLd}
 >
   <div class="shell shell--split">
     <Sidebar activeCategory={category} />

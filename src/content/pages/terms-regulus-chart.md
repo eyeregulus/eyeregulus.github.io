@@ -1,5 +1,6 @@
 ---
 title: 레귤러스 차트 Terms & Conditions
+description: "Regulus Chart 앱 이용약관."
 permalink: /terms-regulus-chart/
 layout: single
 ---

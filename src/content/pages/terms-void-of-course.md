@@ -1,5 +1,6 @@
 ---
 title: 보이드 오브 코스 Terms & Conditions
+description: "Void of Course(보이드 오브 코스) 앱 이용약관."
 permalink: /terms-void-of-course/
 layout: single
 ---

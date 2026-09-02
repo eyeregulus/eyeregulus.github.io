@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import { SITE, GOATCOUNTER_CODE } from '../consts';
+import { siteSchema } from '../lib/schema';
 import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
 
@@ -10,23 +11,29 @@ interface Props {
   ogImage?: string;
   ogType?: 'website' | 'article';
   publishedTime?: string;
+  modifiedTime?: string;
   isHome?: boolean;
+  /** Extra JSON-LD objects for this page (BlogPosting, SoftwareApplication…). */
+  jsonLd?: Record<string, unknown>[];
 }
 
 const {
   title,
-  description = '',
+  description = SITE.description,
   ogImage,
   ogType = 'website',
   publishedTime,
+  modifiedTime,
   isHome = false,
+  jsonLd = [],
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const seoTitle = title.includes(SITE.title)
   ? title
   : `${title} ${SITE.titleSeparator} ${SITE.title}`;
-const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
+const ogImageAbs = new URL(ogImage ?? SITE.defaultOgImage, SITE.url).href;
+const schemas = [...siteSchema(), ...jsonLd];
 ---
 
 <!doctype html>
@@ -59,13 +66,22 @@ const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
     <meta property="og:title" content={title} />
     <meta property="og:url" content={canonical} />
     <meta property="og:description" content={description} />
-    {ogImageAbs && <meta property="og:image" content={ogImageAbs} />}
+    <meta property="og:image" content={ogImageAbs} />
     {ogType === 'article' && publishedTime && (
       <meta property="article:published_time" content={publishedTime} />
+    )}
+    {ogType === 'article' && modifiedTime && (
+      <meta property="article:modified_time" content={modifiedTime} />
     )}
     {ogType === 'article' && (
       <meta property="article:author" content={SITE.name} />
     )}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@eye_of_regulus" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbs} />
 
     <link rel="canonical" href={canonical} />
     <link
@@ -76,17 +92,11 @@ const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
     />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    {isHome && (
-      <script
-        type="application/ld+json"
-        set:html={JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'Person',
-          name: SITE.name,
-          url: SITE.url + '/',
-        })}
-      />
-    )}
+    {
+      schemas.map((s) => (
+        <script type="application/ld+json" set:html={JSON.stringify(s)} />
+      ))
+    }
 
     <meta
       name="google-site-verification"

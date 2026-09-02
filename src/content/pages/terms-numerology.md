@@ -1,5 +1,6 @@
 ---
 title: 수비학 계산기 Terms & Conditions
+description: "수비학 계산기(Numerology) 앱 이용약관."
 permalink: /terms-numerology/
 layout: single
 ---

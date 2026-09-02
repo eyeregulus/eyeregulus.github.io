@@ -4,12 +4,13 @@ export const SITE = {
   title: 'Eyeregulus',
   titleSeparator: '-',
   name: 'eyeregulus',
-  description: '',
+  description:
+    '현대점성학과 수비학으로 나를 이해하는 이야기. 보이드 오브 코스, 네이탈 차트, 수비학 계산 앱도 함께.',
   url: 'https://eyeregulus.dev',
-  locale: 'en-US',
-  ogLocale: 'en_US',
+  locale: 'ko-KR',
+  ogLocale: 'ko_KR',
   wordsPerMinute: 200,
-  defaultOgImage: '/assets/images/Category/_Background.png',
+  defaultOgImage: '/assets/images/og-default.png',
   googleSiteVerification: 'ckejiakpT65_svdpAjoaXIyEPq3GH89EL-gHGyA_7Cs',
   gtmId: 'GTM-PTHH9S4T',
   gtagId: 'GTM-PWXGJ4JB',
@@ -20,15 +21,24 @@ export const AUTHOR = {
   bio: '**Fathoming the world with the eyes of a lion**',
   location: 'Elsewhere',
   email: 'eyeregulus@gmail.com',
-  links: [
-    { label: 'Twitter', icon: 'fab fa-fw fa-twitter-square', url: 'https://x.com/ain_alion20462' },
-  ],
 };
 
 export const TAGLINE = '사자의 눈으로 세상을 헤아립니다';
 export const INTRO = '현대점성학과 수비학으로 나를 이해하는 이야기.';
 
 export const YOUTUBE_URL = 'https://www.youtube.com/@Eye_of_regulus_Astrology';
+export const X_URL = 'https://x.com/eye_of_regulus';
+
+// Every canonical profile for this brand — used for schema.org `sameAs`
+// so Google/AI link the blog, channel, socials and apps as one entity.
+export const SAME_AS = [
+  YOUTUBE_URL,
+  X_URL,
+  'https://play.google.com/store/apps/details?id=dev.regulus.chart',
+  'https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse',
+  'https://apps.apple.com/kr/app/void-of-course/id6777887938',
+  'https://play.google.com/store/apps/details?id=com.numerology.finderapp',
+];
 
 // GoatCounter site code -> https://<code>.goatcounter.com
 export const GOATCOUNTER_CODE = 'eyeregulusdev';
@@ -90,12 +100,6 @@ export const CATEGORY_ORDER = [
   '어플리케이션 사용방법',
   '현대점성학 공통',
   '현대점성학 초급',
-];
-
-// Footer follow links (_config.yml -> footer.links, only those with a url)
-export const FOOTER_LINKS = [
-  { label: 'Email', icon: 'fas fa-fw fa-envelope-square', url: 'mailto:eyeregulus@gmail.com' },
-  { label: 'Twitter', icon: 'fab fa-fw fa-twitter-square', url: 'https://x.com/ain_alion20462' },
 ];
 
 // _data/category_map.yml : Korean category name -> English archive slug

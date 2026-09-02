@@ -1,5 +1,6 @@
 ---
 title: Reserve
+description: "아이레굴루스 점성학 상담 예약 신청."
 permalink: /reserve/
 layout: single
 ---

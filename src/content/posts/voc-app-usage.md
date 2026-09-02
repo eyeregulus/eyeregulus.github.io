@@ -1,6 +1,7 @@
 ---
 date: 2025-12-11
 title: "Void of course"
+description: "Void of Course 앱 사용법. 달의 위상·별자리, 보이드 시작/종료 시각, 달력 뷰, 4단계 알림 설정까지 화면별로 안내합니다."
 categories:
   - 어플리케이션 사용방법
 tags:

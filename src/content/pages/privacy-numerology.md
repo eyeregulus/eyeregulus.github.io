@@ -1,5 +1,6 @@
 ---
 title: 수비학 계산기 Privacy Policy
+description: "수비학 계산기(Numerology) 앱 개인정보처리방침."
 permalink: /privacy-numerology/
 layout: single
 ---

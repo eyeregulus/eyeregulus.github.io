@@ -6,11 +6,12 @@ interface Props {
   title: string;
   description?: string;
   features?: any[];
+  jsonLd?: Record<string, unknown>[];
 }
-const { title, description = '', features } = Astro.props;
+const { title, description, features, jsonLd = [] } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
   <main class="shell">
     <h1 class="page-title">{title}</h1>
     {features && <FeatureRow features={features} />}

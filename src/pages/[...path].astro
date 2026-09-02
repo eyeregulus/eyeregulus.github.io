@@ -5,6 +5,7 @@ import PostLayout from '../layouts/PostLayout.astro';
 import PageLayout from '../layouts/PageLayout.astro';
 import SplashPageLayout from '../layouts/SplashPageLayout.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { appsSchema } from '../lib/schema';
 
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
@@ -56,7 +57,12 @@ if (props.kind === 'post') {
 
 {
   props.kind === 'page' && page.data.layout === 'splash' && (
-    <SplashPageLayout title={page.data.title} features={page.data.feature_row}>
+    <SplashPageLayout
+      title={page.data.title}
+      description={page.data.description}
+      features={page.data.feature_row}
+      jsonLd={page.data.permalink === '/apps/' ? appsSchema() : []}
+    >
       <Content />
     </SplashPageLayout>
   )
@@ -64,7 +70,10 @@ if (props.kind === 'post') {
 
 {
   props.kind === 'page' && page.data.layout !== 'splash' && (
-    <PageLayout title={page.data.title}>
+    <PageLayout
+      title={page.data.title}
+      description={page.data.description}
+    >
       <Content />
     </PageLayout>
   )
@@ -72,7 +81,7 @@ if (props.kind === 'post') {
 
 {
   props.kind === 'page2' && (
-    <BaseLayout title="Eyeregulus" description="">
+    <BaseLayout title="Eyeregulus">
       <main class="shell">
         <p class="pageintro">
           <a href="/">Eyeregulus 홈으로 →</a>

@@ -38,6 +38,8 @@ const posts = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    description: z.string().optional(),
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
     pinned: z.boolean().default(false),
@@ -54,6 +56,7 @@ const pages = defineCollection({
   schema: z.object({
     title: z.string(),
     permalink: z.string(),
+    description: z.string().optional(),
     layout: z.enum(['single', 'splash']).default('single'),
     overlay_image: z.string().optional(),
     overlay_filter: z.union([z.string(), z.number()]).optional(),

@@ -1,6 +1,7 @@
 ---
 date: 2025-12-18
 title: "[점성학 Basic] 4대 원소(The 4 Elements)_3"
+description: "현대점성학 입문 3편. 불·흙·공기·물 4대 원소가 각 별자리의 '연료'를 어떻게 결정하는지, 원소끼리의 조화·부조화까지."
 categories:
   - 현대점성학 초급
 tags:

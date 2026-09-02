@@ -1,5 +1,6 @@
 ---
 title: 레귤러스 차트 Privacy Policy
+description: "Regulus Chart 앱 개인정보처리방침."
 permalink: /privacy-regulus-chart/
 layout: single
 ---

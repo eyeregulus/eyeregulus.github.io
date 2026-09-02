@@ -1,6 +1,7 @@
 ---
 date: 2026-08-30
 title: "Regulus Chart"
+description: "Regulus Chart 앱 사용법. 내담자 정보로 네이탈·트랜짓 차트를 오프라인에서 그리는 상담용 도구 — 임상 기록, 차트 휠, 시간 조절, 2링 트랜짓까지."
 categories:
   - 어플리케이션 사용방법
 tags:

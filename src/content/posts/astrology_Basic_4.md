@@ -1,6 +1,7 @@
 ---
 date: 2025-12-18
 title: "[점성학 Basic] 3대 특질(The 3 Qualities)_4"
+description: "현대점성학 입문 4편. 활동(카디날)·고정(픽스드)·변동(뮤터블) 3대 특질과, 원소와 특질을 합쳐 별자리의 정체성을 읽는 법."
 categories:
   - 현대점성학 초급
 tags:

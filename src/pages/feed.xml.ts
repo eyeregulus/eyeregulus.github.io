@@ -29,9 +29,10 @@ export const GET: APIRoute = async () => {
   const items = posts
     .map((post) => {
       const url = SITE.url + encodePath(postPath(post));
+      const d = post.data.description ?? excerptText(post, 5000);
       return `	<item>
 		<title>${xmlEscape(post.data.title)}</title>
-		<description>${xmlEscape(excerptText(post, 5000))}</description>
+		<description>${xmlEscape(d)}</description>
 		<pubDate>${rfc822(post.data.date)}</pubDate>
 		<link>${url}</link>
 		<guid isPermaLink="true">${url}</guid>

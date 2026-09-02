@@ -1,6 +1,7 @@
 ---
 date: 2025-12-18
 title: "[점성학 Basic] 2대 극성(The 2 Polarities)_2"
+description: "현대점성학 입문 2편. 12별자리를 에너지 방향에 따라 나누는 양(외향·발산)과 음(내향·수렴)의 2대 극성 정리."
 categories:
   - 현대점성학 초급
 tags:

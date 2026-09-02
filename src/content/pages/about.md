@@ -1,5 +1,6 @@
 ---
 title: Eyeregulus
+description: "현대점성학과 수비학으로 삶을 탐구하는 공간, 아이레굴루스를 소개합니다."
 permalink: /about/
 layout: single
 overlay_image: /assets/images/Category/_Background.png
