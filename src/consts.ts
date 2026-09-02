@@ -47,13 +47,17 @@ export const PROFILE = {
 export const TAGLINE = '사자의 눈으로 세상을 헤아립니다';
 export const INTRO = '현대점성학과 수비학으로 나를 이해하는 이야기.';
 
-export const YOUTUBE_URL = 'https://www.youtube.com/@Eye_of_regulus_Astrology';
+export const YOUTUBE_URL = 'https://www.youtube.com/@Eyeofregulus_Astrology';
+// Canonical (never-changing) channel URL — safe anchor for schema sameAs.
+export const YOUTUBE_CHANNEL_URL =
+  'https://www.youtube.com/channel/UChCty12a9rmWtbVavF7H9JQ';
 export const X_URL = 'https://x.com/eye_of_regulus';
 
 // Every canonical profile for this brand — used for schema.org `sameAs`
 // so Google/AI link the blog, channel, socials and apps as one entity.
 export const SAME_AS = [
   YOUTUBE_URL,
+  YOUTUBE_CHANNEL_URL,
   X_URL,
   'https://play.google.com/store/apps/details?id=dev.regulus.chart',
   'https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse',
