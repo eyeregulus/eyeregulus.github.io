@@ -30,6 +30,9 @@ export const INTRO = '현대점성학과 수비학으로 나를 이해하는 이
 
 export const YOUTUBE_URL = 'https://www.youtube.com/@Eye_of_regulus_Astrology';
 
+// GoatCounter site code -> https://<code>.goatcounter.com
+export const GOATCOUNTER_CODE = 'eyeregulusdev';
+
 // Masthead navigation (_data/navigation.yml -> main)
 export const MAIN_NAV = [
   { title: 'About', url: '/about/' },

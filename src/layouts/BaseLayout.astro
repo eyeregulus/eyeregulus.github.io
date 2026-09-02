@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { SITE } from '../consts';
+import { SITE, GOATCOUNTER_CODE } from '../consts';
 import Masthead from '../components/Masthead.astro';
 import Footer from '../components/Footer.astro';
 
@@ -118,6 +118,13 @@ const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
     <slot />
 
     <Footer />
+
+    <!-- GoatCounter (privacy-friendly, cookieless visitor stats) -->
+    <script
+      is:inline
+      data-goatcounter={`https://${GOATCOUNTER_CODE}.goatcounter.com/count`}
+      async
+      src="//gc.zgo.at/count.js"></script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script

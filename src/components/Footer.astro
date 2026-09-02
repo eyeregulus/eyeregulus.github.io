@@ -1,11 +1,9 @@
 ---
-import { SITE, YOUTUBE_URL } from '../consts';
+import { SITE, YOUTUBE_URL, GOATCOUNTER_CODE } from '../consts';
 import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
-// Same hits.sh key as the old site so the running total carries over.
-const hits =
-  'https://hits.sh/Eyeregulus.github.io.svg?style=flat-square&label=%EB%B0%A9%EB%AC%B8&labelColor=15171d&color=8a6f43&view=today-total';
+const countUrl = `https://${GOATCOUNTER_CODE}.goatcounter.com/counter/TOTAL.json`;
 ---
 
 <footer class="foot">
@@ -20,10 +18,27 @@ const hits =
     </span>
   </div>
   <div class="foot__hits">
-    <a href="https://hits.sh/Eyeregulus.github.io/" rel="nofollow">
-      <img src={hits} alt="방문자 수" width="126" height="20" loading="lazy" />
-    </a>
+    <span id="visit-count" data-src={countUrl} hidden>방문 <b>–</b></span>
   </div>
 </footer>
+
+<script is:inline>
+  (function () {
+    var el = document.getElementById('visit-count');
+    if (!el) return;
+    fetch(el.dataset.src)
+      .then(function (r) {
+        return r.ok ? r.json() : null;
+      })
+      .then(function (d) {
+        var n = d && (d.count_unique || d.count);
+        if (n) {
+          el.querySelector('b').textContent = String(n).trim();
+          el.hidden = false;
+        }
+      })
+      .catch(function () {});
+  })();
+</script>
 
 <Modals />
