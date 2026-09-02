@@ -647,6 +647,19 @@ a.app__name:hover {
   color: var(--gold);
 }
 
+.foot__hits {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 5vw, 2.5rem) 2.5rem;
+}
+.foot__hits img {
+  display: block;
+  opacity: 0.7;
+}
+.foot__hits a:hover img {
+  opacity: 1;
+}
+
 /* ---------- feature row (apps page + app-usage posts) ---------- */
 
 .feature__wrapper {
