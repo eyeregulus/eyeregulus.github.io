@@ -1,0 +1,173 @@
+---
+import { SITE, slugify } from '../consts';
+import {
+  getSortedPosts,
+  postPath,
+  postHref,
+  readTime,
+  excerptText,
+  categorySlug,
+  type Post,
+} from '../lib/posts';
+import BaseLayout from './BaseLayout.astro';
+import Sidebar from '../components/Sidebar.astro';
+import PageMeta from '../components/PageMeta.astro';
+import ArchiveSingle from '../components/ArchiveSingle.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+
+interface Props {
+  post: Post;
+}
+const { post } = Astro.props;
+const { title, date, tags, categories, feature_row } = post.data;
+
+const all = await getSortedPosts();
+const idx = all.findIndex((p) => p.id === post.id);
+const olderPost = all[idx + 1]; // Jekyll page.previous
+const newerPost = all[idx - 1]; // Jekyll page.next
+const related = all.filter((p) => p.id !== post.id).slice(0, 3);
+
+const absoluteUrl = SITE.url + postHref(post);
+const description = excerptText(post, 200);
+
+const pad = (n: number) => String(n).padStart(2, '0');
+const iso = `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())}T00:00:00+00:00`;
+const dateFormatted = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+});
+
+const sortedTags = [...tags].sort((a, b) => a.localeCompare(b, 'ko'));
+const sortedCategories = [...categories].sort((a, b) => a.localeCompare(b, 'ko'));
+
+const ogImage = feature_row?.[0]?.image_path;
+---
+
+<BaseLayout
+  layout="single"
+  title={title}
+  description={description}
+  ogImage={ogImage}
+  ogType="article"
+  publishedTime={iso}
+>
+  <div id="main" role="main">
+    <Sidebar authorProfile={true} />
+
+    <article
+      class="page"
+      itemscope
+      itemtype="https://schema.org/CreativeWork"
+    >
+      <meta itemprop="headline" content={title} />
+      {description && <meta itemprop="description" content={description} />}
+      <meta itemprop="datePublished" content={iso} />
+
+      <div class="page__inner-wrap">
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href={absoluteUrl} itemprop="url">{title}</a>
+          </h1>
+          <PageMeta readTime={readTime(post)} />
+        </header>
+
+        <section class="page__content" itemprop="text">
+          {feature_row && <FeatureRow features={feature_row} />}
+          <slot />
+        </section>
+
+        <footer class="page__meta">
+          {
+            sortedTags.length > 0 && (
+              <p class="page__taxonomy">
+                <strong>
+                  <i class="fas fa-fw fa-tags" aria-hidden="true" /> Tags:{' '}
+                </strong>
+                <span itemprop="keywords">
+                  {sortedTags.map((t, i) => (
+                    <>
+                      <a href={`/tags/#${slugify(t)}`} class="page__taxonomy-item p-category" rel="tag" set:text={t} />
+                      {i < sortedTags.length - 1 && <span class="sep">, </span>}
+                    </>
+                  ))}
+                </span>
+              </p>
+            )
+          }
+          {
+            sortedCategories.length > 0 && (
+              <p class="page__taxonomy">
+                <strong>
+                  <i class="fas fa-fw fa-folder-open" aria-hidden="true" />{' '}
+                  Categories:{' '}
+                </strong>
+                <span itemprop="keywords">
+                  {sortedCategories.map((c, i) => (
+                    <>
+                      <a href={`/categories/#${categorySlug(c)}`} class="page__taxonomy-item p-category" rel="tag" set:text={c} />
+                      {i < sortedCategories.length - 1 && <span class="sep">, </span>}
+                    </>
+                  ))}
+                </span>
+              </p>
+            )
+          }
+          <p class="page__date">
+            <strong>
+              <i class="fas fa-fw fa-calendar-alt" aria-hidden="true" /> Updated:
+            </strong>{' '}
+            <time class="dt-published" datetime={iso}>{dateFormatted}</time>
+          </p>
+        </footer>
+
+        {
+          (olderPost || newerPost) && (
+            <nav class="pagination">
+              {olderPost ? (
+                <a
+                  href={postHref(olderPost)}
+                  class="pagination--pager"
+                  title={olderPost.data.title}
+                >
+                  Previous
+                </a>
+              ) : (
+                <a href="#" class="pagination--pager disabled">
+                  Previous
+                </a>
+              )}
+              {newerPost ? (
+                <a
+                  href={postHref(newerPost)}
+                  class="pagination--pager"
+                  title={newerPost.data.title}
+                >
+                  Next
+                </a>
+              ) : (
+                <a href="#" class="pagination--pager disabled">
+                  Next
+                </a>
+              )}
+            </nav>
+          )
+        }
+      </div>
+    </article>
+
+    {
+      related.length > 0 && (
+        <div class="page__related">
+          <h2 class="page__related-title">You may also enjoy</h2>
+          <div class="grid__wrapper">
+            {related.map((p) => (
+              <ArchiveSingle post={p} type="grid" />
+            ))}
+          </div>
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

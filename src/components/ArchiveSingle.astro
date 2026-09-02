@@ -1,0 +1,35 @@
+---
+import type { Post } from '../lib/posts';
+import { postHref, readTime, excerptText } from '../lib/posts';
+import PageMeta from './PageMeta.astro';
+
+interface Props {
+  post: Post;
+  type?: 'list' | 'grid';
+}
+const { post, type = 'list' } = Astro.props;
+
+const url = postHref(post);
+const title = post.data.title;
+const excerpt = post.data.feature_row?.[0]?.title ?? excerptText(post, 160);
+---
+
+<div class={`${type}__item`}>
+  <article
+    class="archive__item"
+    itemscope
+    itemtype="https://schema.org/CreativeWork"
+  >
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      <a href={url} rel="permalink">{title}</a>
+    </h2>
+    <PageMeta readTime={readTime(post)} type={type} />
+    {
+      excerpt && (
+        <p class="archive__item-excerpt" itemprop="description">
+          {excerpt}
+        </p>
+      )
+    }
+  </article>
+</div>

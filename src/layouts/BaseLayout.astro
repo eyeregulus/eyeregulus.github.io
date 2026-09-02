@@ -1,0 +1,222 @@
+---
+import { SITE } from '../consts';
+import Masthead from '../components/Masthead.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  /** body class suffix: splash | single | archive */
+  layout: 'splash' | 'single' | 'archive';
+  title: string;
+  description?: string;
+  /** absolute or root-relative image URL for og:image */
+  ogImage?: string;
+  ogType?: 'website' | 'article';
+  publishedTime?: string;
+  isHome?: boolean;
+  bodyClass?: string;
+}
+
+const {
+  layout,
+  title,
+  description = '',
+  ogImage,
+  ogType = 'website',
+  publishedTime,
+  isHome = false,
+  bodyClass = '',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+
+// seo.html title rule: keep as-is when it already contains the site title,
+// otherwise append " - Eyeregulus".
+const seoTitle = title.includes(SITE.title)
+  ? title
+  : `${title} ${SITE.titleSeparator} ${SITE.title}`;
+
+const ogImageAbs = ogImage ? new URL(ogImage, SITE.url).href : undefined;
+---
+
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.27.3 by Michael Rose
+  Copyright 2013-2025 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang={SITE.locale} class="no-js">
+  <head>
+    <meta charset="utf-8" />
+
+    <!-- Google Tag Manager -->
+    <script is:inline>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-PTHH9S4T');
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <title>{seoTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.name} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:locale" content={SITE.ogLocale} />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:title" content={title} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:description" content={description} />
+    {ogImageAbs && <meta property="og:image" content={ogImageAbs} />}
+    {ogType === 'article' && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {ogType === 'article' && (
+      <meta property="article:author" content={SITE.name} />
+    )}
+
+    <link rel="canonical" href={canonical} />
+    <link
+      href="/feed.xml"
+      type="application/atom+xml"
+      rel="alternate"
+      title={`${SITE.title} Feed`}
+    />
+
+    {isHome && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: SITE.name,
+          url: SITE.url + '/',
+        })}
+      />
+    )}
+
+    <meta
+      name="google-site-verification"
+      content={SITE.googleSiteVerification}
+    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script is:inline>
+      document.documentElement.className =
+        document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+    </script>
+
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- For all browsers -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript
+      ><link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"
+      /></noscript
+    >
+  </head>
+
+  <body class={`layout--${layout}${bodyClass ? ' ' + bodyClass : ''}`} dir="ltr">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src={`https://www.googletagmanager.com/ns.html?id=${SITE.gtmId}`}
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="skip-links">
+      <ul>
+        <li>
+          <a href="#site-nav" class="screen-reader-shortcut"
+            >Skip to primary navigation</a
+          >
+        </li>
+        <li>
+          <a href="#main" class="screen-reader-shortcut">Skip to content</a>
+        </li>
+        <li>
+          <a href="#footer" class="screen-reader-shortcut">Skip to footer</a>
+        </li>
+      </ul>
+    </nav>
+
+    <Masthead />
+
+    <div class="initial-content">
+      <slot />
+    </div>
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+
+    <script is:inline src="/assets/js/vendor/jquery/jquery-3.6.0.js"></script>
+    <script is:inline src="/assets/js/plugins/gumshoe.js"></script>
+    <script is:inline src="/assets/js/plugins/jquery.ba-throttle-debounce.js"
+    ></script>
+    <script is:inline src="/assets/js/plugins/jquery.fitvids.js"></script>
+    <script is:inline src="/assets/js/plugins/jquery.greedy-navigation.js"
+    ></script>
+    <script is:inline src="/assets/js/plugins/jquery.magnific-popup.js"></script>
+    <script is:inline src="/assets/js/plugins/smooth-scroll.js"></script>
+    <script is:inline src="/assets/js/_main.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      is:inline
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=GTM-PWXGJ4JB"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'GTM-PWXGJ4JB', { anonymize_ip: true });
+    </script>
+
+    <!-- Back to Top Button -->
+    <a id="back-to-top" href="#" class="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </a>
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        var backToTop = document.getElementById('back-to-top');
+        window.addEventListener('scroll', function () {
+          if (window.pageYOffset > 100) {
+            backToTop.style.display = 'block';
+          } else {
+            backToTop.style.display = 'none';
+          }
+        });
+        backToTop.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    </script>
+
+    <script is:inline src="/assets/js/starfield.js"></script>
+  </body>
+</html>

@@ -1,0 +1,41 @@
+---
+import { SITE } from '../consts';
+
+interface Props {
+  title?: string;
+  overlayImage: string;
+  overlayFilter?: string | number;
+  lead?: string;
+  actions?: { label: string; url: string }[];
+}
+const { title, overlayImage, overlayFilter, lead, actions = [] } = Astro.props;
+
+let filter = '';
+if (typeof overlayFilter === 'number' || /^0?\.\d+$|^\d(\.\d+)?$/.test(String(overlayFilter ?? ''))) {
+  filter = `linear-gradient(rgba(0, 0, 0, ${overlayFilter}), rgba(0, 0, 0, ${overlayFilter})), `;
+} else if (overlayFilter) {
+  filter = `${overlayFilter}, `;
+}
+const style = ` background-image: ${filter}url('${overlayImage}');`;
+const heading = title || SITE.title;
+---
+
+<div class="page__hero--overlay" style={style}>
+  <div class="wrapper">
+    <h1 id="page-title" class="page__title" itemprop="headline">
+      {heading}
+    </h1>
+    {lead && <p class="page__lead">{lead}</p>}
+    {
+      actions.length > 0 && (
+        <p>
+          {actions.map((a) => (
+            <a href={a.url} class="btn btn--light-outline btn--large">
+              {a.label}
+            </a>
+          ))}
+        </p>
+      )
+    }
+  </div>
+</div>

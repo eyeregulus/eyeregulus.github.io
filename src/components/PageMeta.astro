@@ -1,0 +1,15 @@
+---
+interface Props {
+  readTime: string;
+  type?: 'list' | 'grid';
+}
+const { readTime, type = 'list' } = Astro.props;
+const clockClass = type === 'grid' ? 'far fa-fw fa-clock' : 'far fa-clock';
+---
+
+<p class="page__meta">
+  <span class="page__meta-readtime">
+    <i class={clockClass} aria-hidden="true"></i>
+    {readTime}
+  </span>
+</p>

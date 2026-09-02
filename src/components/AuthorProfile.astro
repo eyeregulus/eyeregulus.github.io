@@ -1,0 +1,75 @@
+---
+import { AUTHOR, SITE } from '../consts';
+// Bio is markdown in the old config: **...** -> <strong>...</strong>
+const bioHtml = AUTHOR.bio.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+---
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a
+        class="u-url"
+        rel="me"
+        href={`${SITE.url}/`}
+        itemprop="url">{AUTHOR.name}</a
+      >
+    </h3>
+    <div class="author__bio p-note" itemprop="description">
+      <p set:html={bioHtml} />
+    </div>
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      {
+        AUTHOR.location && (
+          <li
+            itemprop="homeLocation"
+            itemscope
+            itemtype="https://schema.org/Place"
+          >
+            <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true" />{' '}
+            <span itemprop="name" class="p-locality">
+              {AUTHOR.location}
+            </span>
+          </li>
+        )
+      }
+      {
+        AUTHOR.links.map((link) => (
+          <li>
+            <a
+              href={link.url}
+              rel="nofollow noopener noreferrer me"
+              itemprop="sameAs"
+            >
+              <i class={link.icon} aria-hidden="true" />
+              <span class="label">{link.label}</span>
+            </a>
+          </li>
+        ))
+      }
+      {
+        AUTHOR.email && (
+          <li>
+            <a href={`mailto:${AUTHOR.email}`} rel="me" class="u-email">
+              <meta itemprop="email" content={AUTHOR.email} />
+              <i class="fas fa-fw fa-envelope-square" aria-hidden="true" />
+              <span class="label">Email</span>
+            </a>
+          </li>
+        )
+      }
+      <Fragment
+        set:html={`<!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->`}
+      />
+    </ul>
+  </div>
+</div>

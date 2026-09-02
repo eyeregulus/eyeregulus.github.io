@@ -1,0 +1,42 @@
+---
+import { SITE, FOOTER_LINKS } from '../consts';
+import Modals from './Modals.astro';
+
+const year = new Date().getFullYear();
+---
+
+<!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+
+<!-- Visitor Counter -->
+<div style="margin-bottom: 10px;">
+  <a href="https://hits.sh/Eyeregulus.github.io/">
+    <img
+      src="https://hits.sh/Eyeregulus.github.io.svg?view=today-total&style=flat-square&label=Visitors&color=F81A1A"
+      alt="Hits"
+    />
+  </a>
+</div>
+<div class="page__footer-follow">
+  <ul class="social-icons">
+    <li><strong>Follow:</strong></li>
+    {
+      FOOTER_LINKS.map((link) => (
+        <li>
+          <a href={link.url} rel="nofollow noopener noreferrer">
+            <i class={link.icon} aria-hidden="true" /> {link.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<div class="page__footer-copyright">
+  &copy; {year} <a href={SITE.url}>{SITE.title}</a> All Rights Reserved. &nbsp;&bull;&nbsp;
+  <a href="#" onclick="openPrivacyModal(); return false;">개인정보처리방침</a> &nbsp;&bull;&nbsp;
+  <a href="#" onclick="openTermsModal(); return false;">이용약관</a>
+</div>
+
+<Modals />

@@ -1,0 +1,80 @@
+---
+import { SITE } from '../consts';
+import BaseLayout from './BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import PageMeta from '../components/PageMeta.astro';
+
+interface Props {
+  title: string;
+  permalink: string;
+  description?: string;
+  ogImage?: string;
+  overlayImage?: string;
+  overlayFilter?: string | number;
+  showReadTime?: boolean;
+  readTimeText?: string;
+}
+const {
+  title,
+  permalink,
+  description = '',
+  ogImage,
+  overlayImage,
+  overlayFilter,
+  showReadTime = false,
+  readTimeText = '',
+} = Astro.props;
+
+const hasHero = Boolean(overlayImage);
+const absoluteUrl = new URL(permalink, SITE.url).href;
+---
+
+<BaseLayout
+  layout="single"
+  title={title}
+  description={description}
+  ogImage={ogImage ?? overlayImage}
+  ogType="website"
+>
+  {
+    hasHero && (
+      <PageHero
+        title={title}
+        overlayImage={overlayImage!}
+        overlayFilter={overlayFilter}
+      />
+    )
+  }
+
+  <div id="main" role="main">
+    <article
+      class="page"
+      itemscope
+      itemtype="https://schema.org/CreativeWork"
+    >
+      <meta itemprop="headline" content={title} />
+      {description && <meta itemprop="description" content={description} />}
+
+      <div class="page__inner-wrap">
+        {
+          !hasHero && (
+            <header>
+              <h1 id="page-title" class="page__title" itemprop="headline">
+                <a href={absoluteUrl} itemprop="url">
+                  {title}
+                </a>
+              </h1>
+              {showReadTime && <PageMeta readTime={readTimeText} />}
+            </header>
+          )
+        }
+
+        <section class="page__content" itemprop="text">
+          <slot />
+        </section>
+
+        <footer class="page__meta"></footer>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

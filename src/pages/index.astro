@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+import ArchiveSingle from '../components/ArchiveSingle.astro';
+import { getSortedPosts } from '../lib/posts';
+
+const recent = (await getSortedPosts()).slice(0, 3);
+
+const features = [
+  {
+    image_path: '/assets/images/Category/Lion_1.png',
+    alt: '내가 바라보는 세상',
+    title: '내가 바라보는 세상',
+    excerpt: '아이레굴루스란?',
+    url: '/categories/ego/',
+    btn_label: '자세히 보기',
+    btn_class: 'btn--primary',
+  },
+  {
+    image_path: '/assets/images/Category/Astro.png',
+    alt: '현대점성학 공통',
+    title: '현대점성학 공통',
+    excerpt: '현대점성학의 다양한 공통 주제',
+    url: '/categories/astrology-common/',
+    btn_label: '자세히 보기',
+    btn_class: 'btn--primary',
+  },
+  {
+    image_path: '/assets/images/Category/Beginner.png',
+    alt: '현대점성학 초급',
+    title: '현대점성학 초급',
+    excerpt: '점성학의 기본적인 개념',
+    url: '/categories/astrology-beginner/',
+    btn_label: '자세히 보기',
+    btn_class: 'btn--primary',
+  },
+];
+---
+
+<BaseLayout
+  layout="splash"
+  title="Eyeregulus"
+  description=""
+  ogImage="/assets/images/Category/_Background.png"
+  isHome={true}
+>
+  <PageHero
+    title="Eyeregulus"
+    overlayImage="/assets/images/Category/_Background.png"
+    overlayFilter={0.5}
+    actions={[{ label: 'About', url: '/about/' }]}
+  />
+
+  <div id="main" role="main">
+    <article class="splash" itemscope itemtype="https://schema.org/CreativeWork">
+      <section class="page__content" itemprop="text">
+        <FeatureRow features={features} />
+
+        <h3 class="archive__subtitle">가장 최근 글</h3>
+
+        <div class="entries-list">
+          {recent.map((post) => <ArchiveSingle post={post} type="list" />)}
+        </div>
+      </section>
+    </article>
+  </div>
+</BaseLayout>

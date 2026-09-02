@@ -1,0 +1,81 @@
+---
+// Port of the customised /_includes/feature_row (extensionless) from the old repo.
+interface FeatureItem {
+  image_path?: string;
+  alt?: string;
+  title?: string;
+  excerpt?: string;
+  image_caption?: string;
+  url?: string;
+  btn_label?: string;
+  btn_class?: string;
+  [k: string]: string | undefined;
+}
+interface Props {
+  features: FeatureItem[];
+  type?: string;
+}
+const { features, type } = Astro.props;
+
+function buttons(f: FeatureItem) {
+  const out: { url: string; label: string; cls: string }[] = [];
+  if (f.url && f.btn_label) {
+    out.push({ url: f.url, label: f.btn_label, cls: f.btn_class ?? '' });
+    for (const n of [2, 3, 4, 5]) {
+      const url = f[`url${n}`];
+      const label = f[`btn_label${n}`];
+      if (url && label) {
+        out.push({ url, label, cls: f[`btn${n}_class`] ?? f.btn_class ?? '' });
+      }
+    }
+  }
+  return out;
+}
+---
+
+<div class="feature__wrapper">
+  {
+    features.map((f) => (
+      <div class={`feature__item${type ? `--${type}` : ''}`}>
+        <div class="archive__item">
+          {f.image_path && (
+            <div class="archive__item-teaser">
+              <a href={f.url} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={f.image_path}
+                  alt={f.alt ?? ''}
+                  style="width: 100%; height: auto; display: block;"
+                />
+              </a>
+              {f.image_caption && (
+                <span class="archive__item-caption" set:html={f.image_caption} />
+              )}
+            </div>
+          )}
+          <div class="archive__item-body">
+            {f.title && <h2 class="archive__item-title">{f.title}</h2>}
+            {f.excerpt && (
+              <div class="archive__item-excerpt">
+                <p>{f.excerpt}</p>
+              </div>
+            )}
+            {buttons(f).length > 0 && (
+              <div class="archive__item-buttons">
+                {buttons(f).map((b) => (
+                  <a
+                    href={b.url}
+                    class={`btn ${b.cls}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {b.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>

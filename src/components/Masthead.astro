@@ -1,0 +1,36 @@
+---
+import { SITE, MAIN_NAV } from '../consts';
+---
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">
+          {SITE.title}
+        </a>
+        <ul class="visible-links">
+          {
+            MAIN_NAV.map((link) => (
+              <li class="masthead__menu-item">
+                <a href={link.url}>{link.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+        <button
+          id="language-switcher"
+          type="button"
+          style="background: none; border: none; cursor: pointer; font-size: 1.5em; padding: 0 10px; vertical-align: middle;"
+        >
+          <span id="language-flag">🇰🇷</span>
+        </button>
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>

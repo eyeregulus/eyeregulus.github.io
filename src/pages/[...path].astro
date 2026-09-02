@@ -1,0 +1,104 @@
+---
+import { getCollection, render } from 'astro:content';
+import { getSortedPosts, postPath, readTime } from '../lib/posts';
+import PostLayout from '../layouts/PostLayout.astro';
+import PageLayout from '../layouts/PageLayout.astro';
+import SplashPageLayout from '../layouts/SplashPageLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureRow from '../components/FeatureRow.astro';
+
+export async function getStaticPaths() {
+  const posts = await getSortedPosts();
+  const pages = await getCollection('pages');
+
+  const postPaths = posts.map((post) => ({
+    params: { path: postPath(post).replace(/^\/|\/$/g, '') },
+    props: { kind: 'post' as const, id: post.id },
+  }));
+
+  const pagePaths = pages.map((page) => ({
+    params: { path: page.data.permalink.replace(/^\/|\/$/g, '') },
+    props: { kind: 'page' as const, id: page.id },
+  }));
+
+  // jekyll-paginate leftover: /page2/ mirrors the home splash.
+  const misc = [{ params: { path: 'page2' }, props: { kind: 'page2' as const } }];
+
+  return [...postPaths, ...pagePaths, ...misc];
+}
+
+const props = Astro.props as
+  | { kind: 'post'; id: string }
+  | { kind: 'page'; id: string }
+  | { kind: 'page2' };
+
+let Content: any = null;
+let post: any = null;
+let page: any = null;
+
+if (props.kind === 'post') {
+  const all = await getCollection('posts');
+  post = all.find((p) => p.id === props.id)!;
+  Content = (await render(post)).Content;
+} else if (props.kind === 'page') {
+  const all = await getCollection('pages');
+  page = all.find((p) => p.id === props.id)!;
+  Content = (await render(page)).Content;
+}
+---
+
+{
+  props.kind === 'post' && (
+    <PostLayout post={post}>
+      <Content />
+    </PostLayout>
+  )
+}
+
+{
+  props.kind === 'page' && page.data.layout === 'splash' && (
+    <SplashPageLayout
+      title={page.data.title}
+      overlayImage={page.data.overlay_image}
+      overlayFilter={page.data.overlay_filter}
+      features={page.data.feature_row}
+      featureWrapperClass={page.data.feature_row_wrapper_class}
+    >
+      <Content />
+    </SplashPageLayout>
+  )
+}
+
+{
+  props.kind === 'page' && page.data.layout !== 'splash' && (
+    <PageLayout
+      title={page.data.title}
+      permalink={page.data.permalink}
+      overlayImage={page.data.overlay_image}
+      overlayFilter={page.data.overlay_filter}
+      showReadTime={page.data.permalink === '/review/'}
+      readTimeText="less than 1 minute read"
+    >
+      <Content />
+    </PageLayout>
+  )
+}
+
+{
+  props.kind === 'page2' && (
+    <BaseLayout layout="splash" title="Eyeregulus" description="" isHome={false}>
+      <PageHero
+        title="Eyeregulus"
+        overlayImage="/assets/images/Category/_Background.png"
+        overlayFilter={0.5}
+        actions={[{ label: 'About', url: '/about/' }]}
+      />
+      <div id="main" role="main">
+        <article class="splash">
+          <section class="page__content" />
+        </article>
+      </div>
+    </BaseLayout>
+  )
+}

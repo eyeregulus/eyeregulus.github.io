@@ -1,0 +1,18 @@
+---
+import AuthorProfile from './AuthorProfile.astro';
+import SidebarCategories from './SidebarCategories.astro';
+
+interface Props {
+  authorProfile?: boolean;
+}
+const { authorProfile = false } = Astro.props;
+---
+
+{
+  authorProfile && (
+    <div class="sidebar sticky">
+      <AuthorProfile />
+      <SidebarCategories />
+    </div>
+  )
+}

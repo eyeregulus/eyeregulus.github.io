@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Sidebar from '../../components/Sidebar.astro';
+import ArchiveSingle from '../../components/ArchiveSingle.astro';
+import { getSortedPosts } from '../../lib/posts';
+import { slugify } from '../../consts';
+
+const posts = await getSortedPosts(); // date desc (used for the post lists)
+
+// Tag order mimics Jekyll's `site.tags`: first-seen order while iterating posts
+// chronologically ascending, tags in front-matter order.
+const chronological = [...posts].reverse();
+const firstSeen = new Map<string, number>();
+let seq = 0;
+for (const p of chronological) {
+  for (const t of p.data.tags) {
+    if (!firstSeen.has(t)) firstSeen.set(t, seq++);
+  }
+}
+
+const tagMap = new Map<string, typeof posts>();
+for (const p of posts) {
+  for (const t of p.data.tags) {
+    if (!tagMap.has(t)) tagMap.set(t, []);
+    tagMap.get(t)!.push(p);
+  }
+}
+
+const entries = [...tagMap.entries()]
+  .map(([name, tagPosts]) => ({
+    name,
+    posts: tagPosts,
+    count: tagPosts.length,
+    slug: slugify(name),
+  }))
+  .sort(
+    (a, b) =>
+      b.count - a.count ||
+      (firstSeen.get(a.name)! - firstSeen.get(b.name)!),
+  );
+---
+
+<BaseLayout layout="archive" title="Tag Archive" description="">
+  <div id="main" role="main">
+    <Sidebar authorProfile={true} />
+
+    <div class="archive">
+      <h1 id="page-title" class="page__title">Tag Archive</h1>
+
+      <ul class="taxonomy__index">
+        {
+          entries.map((e) => (
+            <li>
+              <a href={`#${e.slug}`}>
+                <strong>{e.name}</strong>{' '}
+                <span class="taxonomy__count">{e.count}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      {
+        entries.map((e) => (
+          <section id={e.slug} class="taxonomy__section">
+            <h2 class="archive__subtitle">{e.name}</h2>
+            <div class="entries-list">
+              {e.posts.map((post) => (
+                <ArchiveSingle post={post} type="list" />
+              ))}
+            </div>
+            <a href="#page-title" class="back-to-top">
+              Back to Top &uarr;
+            </a>
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>
