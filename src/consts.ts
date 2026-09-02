@@ -12,6 +12,7 @@ export const SITE = {
   wordsPerMinute: 200,
   defaultOgImage: '/assets/images/og-default.png',
   googleSiteVerification: 'ckejiakpT65_svdpAjoaXIyEPq3GH89EL-gHGyA_7Cs',
+  naverSiteVerification: '369f9859a7dfaec2fd25f8dcf60bc190ce334441',
   gtmId: 'GTM-PTHH9S4T',
   gtagId: 'GTM-PWXGJ4JB',
 };
