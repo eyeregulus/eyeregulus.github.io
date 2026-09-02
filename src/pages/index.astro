@@ -7,6 +7,7 @@ import {
   APPS,
   CATEGORY_DESC,
   CATEGORY_ORDER,
+  YOUTUBE_URL,
   categorySlug,
   encodeHref,
 } from '../consts';
@@ -29,6 +30,17 @@ const categories = [
       <h1>{TAGLINE}</h1>
       <p>{INTRO}</p>
     </div>
+
+    <a
+      class="channel"
+      href={YOUTUBE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <span class="channel__label">YouTube</span>
+      <span class="channel__title">영상으로 만나는 현대점성학</span>
+      <span class="channel__cta">채널 보기 →</span>
+    </a>
 
     <section class="home-sec">
       <h2 class="home-h">만든 앱</h2>

@@ -8,14 +8,20 @@ const path = Astro.url.pathname;
     <a href="/" class="brand">Eye<span class="r">regulus</span></a>
     <nav>
       {
-        MAIN_NAV.map((link) => (
-          <a
-            href={link.url}
-            aria-current={path === link.url ? 'page' : undefined}
-          >
-            {link.title}
-          </a>
-        ))
+        MAIN_NAV.map((link) =>
+          link.external ? (
+            <a href={link.url} target="_blank" rel="noopener noreferrer">
+              {link.title}
+            </a>
+          ) : (
+            <a
+              href={link.url}
+              aria-current={path === link.url ? 'page' : undefined}
+            >
+              {link.title}
+            </a>
+          ),
+        )
       }
     </nav>
   </div>

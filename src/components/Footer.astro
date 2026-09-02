@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../consts';
+import { SITE, YOUTUBE_URL } from '../consts';
 import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
@@ -9,6 +9,7 @@ const year = new Date().getFullYear();
   <div class="foot__in">
     <span>&copy; {year} {SITE.title}</span>
     <span>
+      <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">YouTube</a> &nbsp;
       <a href="mailto:eyeregulus@gmail.com">Email</a> &nbsp;
       <a href="https://x.com/ain_alion20462" rel="me">Twitter</a> &nbsp;
       <a href="#" onclick="openPrivacyModal(); return false;">개인정보처리방침</a> &nbsp;

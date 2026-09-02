@@ -28,11 +28,14 @@ export const AUTHOR = {
 export const TAGLINE = '사자의 눈으로 세상을 헤아립니다';
 export const INTRO = '현대점성학과 수비학으로 나를 이해하는 이야기.';
 
+export const YOUTUBE_URL = 'https://www.youtube.com/@Eye_of_regulus_Astrology';
+
 // Masthead navigation (_data/navigation.yml -> main)
 export const MAIN_NAV = [
   { title: 'About', url: '/about/' },
   { title: 'Apps', url: '/apps/' },
   { title: 'Review', url: '/review/' },
+  { title: 'YouTube', url: YOUTUBE_URL, external: true },
 ];
 
 // Apps featured on the home page. Icons live in public/assets/images/apps/.
@@ -80,10 +83,10 @@ export const CATEGORY_DESC: Record<string, string> = {
 
 // Order categories appear in on the home page.
 export const CATEGORY_ORDER = [
+  '내가 바라보는 세상',
   '현대점성학 초급',
   '현대점성학 공통',
   '어플리케이션 사용방법',
-  '내가 바라보는 세상',
 ];
 
 // Footer follow links (_config.yml -> footer.links, only those with a url)
