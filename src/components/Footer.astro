@@ -3,7 +3,25 @@ import { SITE, YOUTUBE_URL, X_URL, GOATCOUNTER_CODE } from '../consts';
 import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
-const countUrl = `https://${GOATCOUNTER_CODE}.goatcounter.com/counter/TOTAL.json`;
+
+// Fetch the visitor total at build time and bake it in as plain text. A live
+// client-side fetch gets blocked by mobile content blockers / in-app browsers
+// (goatcounter.com is on tracker blocklists), so the count would vanish there.
+// Trade-off: the number is "as of the last deploy".
+let visitCount: string | null = null;
+try {
+  const res = await fetch(
+    `https://${GOATCOUNTER_CODE}.goatcounter.com/counter/TOTAL.json`,
+    { signal: AbortSignal.timeout(4000) },
+  );
+  if (res.ok) {
+    const data = await res.json();
+    const n = Number(data.count_unique ?? data.count);
+    if (Number.isFinite(n) && n > 0) visitCount = n.toLocaleString('en-US');
+  }
+} catch {
+  /* service unreachable at build time — omit the counter */
+}
 ---
 
 <footer class="foot">
@@ -18,28 +36,9 @@ const countUrl = `https://${GOATCOUNTER_CODE}.goatcounter.com/counter/TOTAL.json
       <a href="#" onclick="openTermsModal(); return false;">이용약관</a>
     </span>
   </div>
-  <div class="foot__hits">
-    <span id="visit-count" data-src={countUrl} hidden>방문 <b>–</b></span>
-  </div>
+  {visitCount && (
+    <div class="foot__hits">방문 <b>{visitCount}</b></div>
+  )}
 </footer>
-
-<script is:inline>
-  (function () {
-    var el = document.getElementById('visit-count');
-    if (!el) return;
-    fetch(el.dataset.src)
-      .then(function (r) {
-        return r.ok ? r.json() : null;
-      })
-      .then(function (d) {
-        var n = d && (d.count_unique || d.count);
-        if (n) {
-          el.querySelector('b').textContent = String(n).trim();
-          el.hidden = false;
-        }
-      })
-      .catch(function () {});
-  })();
-</script>
 
 <Modals />
