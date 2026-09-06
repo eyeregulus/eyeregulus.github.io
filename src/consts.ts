@@ -45,7 +45,7 @@ export const PROFILE = {
 };
 
 export const TAGLINE = '사자의 눈으로 세상을 헤아립니다';
-export const INTRO = '현대점성학과 수비학으로 나를 이해하는 이야기.';
+export const INTRO = '';
 
 export const YOUTUBE_URL = 'https://www.youtube.com/@Eyeofregulus_Astrology';
 // Canonical (never-changing) channel URL — safe anchor for schema sameAs.
