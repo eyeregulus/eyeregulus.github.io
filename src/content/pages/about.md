@@ -6,7 +6,8 @@ layout: single
 overlay_image: /assets/images/Category/_Background.png
 overlay_filter: 0.5
 ---
-
+### 🦁 Our Philosophy
+**"Fathoming the world with the eyes of a lion"**
 **"사자의 눈으로 세상을 헤아린다."**
 
 안녕하세요, **Eyeregulus**입니다.
@@ -21,15 +22,6 @@ overlay_filter: 0.5
 *   **현대 점성학 (Modern Astrology)**: 심리적이고 진화적인 관점에서 별자리를 해석합니다.
 *   **수비학 (Numerology)**: 숫자에 담긴 진동과 에너지를 통해 삶의 패턴을 분석합니다.
 *   **택일과 흐름 (Timing)**: 'Void of Course'와 같은 우주의 흐름을 읽고, 최적의 타이밍을 찾는 법을 공유합니다.
-
-
-### 🦁 Our Philosophy
-
-**"Fathoming the world with the eyes of a lion"**
-
-사자의 눈으로 세상을 헤아린다.
 ---
-
 # [What we made?](/apps/)
-
 📧 이메일: eyeregulus@gmail.com
