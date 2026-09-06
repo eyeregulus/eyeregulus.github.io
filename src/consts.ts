@@ -30,7 +30,7 @@ export const PROFILE = {
   displayName: 'Eye of regulus',
   alternateNames: ['아이레굴루스', 'Eyeregulus', 'Eye of regulus Astrology'],
   avatar: '/assets/images/Category/Lion_1.png',
-  tagline: '사자의 눈으로 세상을 헤아립니다',
+  tagline: '사자의 눈으로 세상을 헤아린다',
   taglineEn: 'Fathoming the world with the eyes of a lion',
   summary:
     '현대점성학과 수비학으로 나를 이해하는 이야기를 글과 영상으로 나눕니다. 보이드 오브 코스, 네이탈 차트, 수비학 계산 앱을 직접 만들어 배포하는 1인 창작자·개발자.',
@@ -44,7 +44,7 @@ export const PROFILE = {
   ],
 };
 
-export const TAGLINE = '사자의 눈으로 세상을 헤아립니다';
+export const TAGLINE = '사자의 눈으로 세상을 헤아린다';
 export const INTRO = '';
 
 export const YOUTUBE_URL = 'https://www.youtube.com/@Eyeofregulus_Astrology';
@@ -81,7 +81,7 @@ export const APPS = [
   {
     name: 'Regulus Chart',
     icon: '/assets/images/apps/regulus-chart.png',
-    desc: '내담자의 네이탈·트랜짓 차트를 오프라인에서 그려주는 상담용 도구.',
+    desc: '네이탈·트랜짓·프로그래션 차트를 생성하는 점성학 도구',
     links: [
       { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=dev.regulus.chart' },
       { label: '사용법', url: '/어플리케이션 사용방법/regulus-chart-app-usage/' },
@@ -90,7 +90,7 @@ export const APPS = [
   {
     name: 'Void of Course',
     icon: '/assets/images/apps/void-of-course.png',
-    desc: '달이 어떤 행성과도 각을 맺지 않는 ‘공허 시간’을 알려주고 알림.',
+    desc: '달이 어떤 행성과도 각을 맺지 않는 ‘보이드 시간’과 행성 역행 순행 체크 택일 전문 앱',
     links: [
       { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse' },
       { label: 'App Store', url: 'https://apps.apple.com/kr/app/void-of-course/id6777887938' },
@@ -100,7 +100,7 @@ export const APPS = [
   {
     name: 'Numerology',
     icon: '/assets/images/apps/numerology.png',
-    desc: '인생여정수·운명수 등 복잡한 수비학 공식을 한눈에 계산.',
+    desc: '생년월일시를 넣고, 수비학 공식을 한눈에 계산하는 앱',
     links: [
       { label: 'Google Play', url: 'https://play.google.com/store/apps/details?id=com.numerology.finderapp' },
       { label: '사용법', url: '/어플리케이션 사용방법/num-app-usage/' },

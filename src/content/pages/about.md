@@ -7,7 +7,7 @@ overlay_image: /assets/images/Category/_Background.png
 overlay_filter: 0.5
 ---
 
-**"사자의 눈으로 세상을 헤아립니다."**
+**"사자의 눈으로 세상을 헤아린다."**
 
 안녕하세요, **Eyeregulus**입니다.
 
@@ -27,13 +27,9 @@ overlay_filter: 0.5
 
 **"Fathoming the world with the eyes of a lion"**
 
-사자의 눈으로 세상을 헤아립니다.
-복잡한 세상 속에서 나만의 중심을 잡고,
-진정한 나를 찾아가는 여정에 함께하겠습니다.
-
+사자의 눈으로 세상을 헤아린다.
 ---
 
 # [What we made?](/apps/)
 
-궁금한 점이나 소통하고 싶은 이야기가 있다면 언제든 환영합니다.
 📧 이메일: eyeregulus@gmail.com
