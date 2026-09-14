@@ -72,7 +72,6 @@ export const GOATCOUNTER_CODE = 'eyeregulusdev';
 export const MAIN_NAV = [
   { title: 'About', url: '/about/' },
   { title: 'Apps', url: '/apps/' },
-  { title: 'Review', url: '/review/' },
   { title: 'YouTube', url: YOUTUBE_URL, external: true },
 ];
 
