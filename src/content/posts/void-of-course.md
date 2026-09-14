@@ -59,7 +59,7 @@ Void of course(보이드 오브 코스)는 달이 어떤 행성과도 각을 맺
 *   **휴식**: 멍 때리기, 잠자기에 가장 좋은 시간입니다.
 
 
-보이드 오브 코스를 다운받아, 보이드 시간을 지혜롭게 사용해보세요.
+보이드 오브 코스를 다운받아, 보이드 시간을 지혜롭게 사용해보세요. 자세한 화면별 사용법은 [Void of Course 앱 사용방법](/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95/voc-app-usage/)에서 확인하세요.
 
 - [Void of Course 앱 다운로드 (Google Play)](https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse)
 - [Void of Course 앱 다운로드 (App Store)](https://apps.apple.com/kr/app/void-of-course/id6777887938)
