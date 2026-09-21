@@ -78,7 +78,7 @@ export const MAIN_NAV = [
 // Apps featured on the home page. Icons live in public/assets/images/apps/.
 export const APPS = [
   {
-    name: 'Regulus Chart',
+    name: 'Regulus Chart Astrology',
     icon: '/assets/images/apps/regulus-chart.png',
     desc: '네이탈·트랜짓·프로그래션 차트를 생성하는 점성학 도구',
     links: [
@@ -122,7 +122,7 @@ export const HUB_LINKS: { label: string; url: string }[] = [
 export const CATEGORY_DESC: Record<string, string> = {
   '현대점성학 초급': '12별자리 · 2대 극성 · 4대 원소 · 3대 특질',
   '현대점성학 공통': '보이드 타임, 출생 시간 찾기 등 실전 주제',
-  '어플리케이션 사용방법': 'Void of Course · 수비학 계산기 · Regulus Chart',
+  '어플리케이션 사용방법': 'Void of Course · 수비학 계산기 · Regulus Chart Astrology',
   '내가 바라보는 세상': '왜 점성학인가 · 점성학을 대하는 관점',
   '수비학': '수비학의 수와 그 의미',
   '현대점성학 중급': '',

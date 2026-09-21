@@ -102,4 +102,4 @@ Astrology(점성학)를 공부하며, 저 스스로에 대한 정확한 해석�
 
 <br>
 
-이렇게 찾은 정확한 출생 시간으로, [Regulus Chart 앱](/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95/regulus-chart-app-usage/)에서 나만의 네이탈 차트를 직접 그려보세요.
+이렇게 찾은 정확한 출생 시간으로, [Regulus Chart Astrology 앱](/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95/regulus-chart-app-usage/)에서 나만의 네이탈 차트를 직접 그려보세요.

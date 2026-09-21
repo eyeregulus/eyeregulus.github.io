@@ -1,6 +1,6 @@
 ---
 title: Apps
-description: "아이레굴루스가 만든 점성학·수비학 앱 — Regulus Chart, Void of Course, 수비학 계산기. Google Play·App Store 링크와 사용법."
+description: "아이레굴루스가 만든 점성학·수비학 앱 — Regulus Chart Astrology, Void of Course, 수비학 계산기. Google Play·App Store 링크와 사용법."
 permalink: /apps/
 layout: splash
 overlay_image: /assets/images/Category/_Background.jpg
@@ -42,8 +42,8 @@ feature_row:
   btn_label4: 사용방법
   btn4_class: btn--success
 - image_path: /assets/images/apps/regulus-chart.png
-  alt: Regulus Chart
-  title: Regulus Chart
+  alt: Regulus Chart Astrology
+  title: Regulus Chart Astrology
   excerpt: 네이탈·트랜짓 점성 차트를 오프라인에서 그려주는 상담용 앱입니다.
   url: https://play.google.com/store/apps/details?id=dev.regulus.chart
   btn_label: Google Play

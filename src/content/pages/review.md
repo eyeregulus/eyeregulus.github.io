@@ -8,5 +8,5 @@ layout: single
 스토어 별점과 짧은 리뷰가 가장 큰 힘이 됩니다.
 
 - **Void of Course** — [Google Play](https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse) · [App Store](https://apps.apple.com/app/id6777887938?action=write-review)
-- **Regulus Chart** — [Google Play](https://play.google.com/store/apps/details?id=dev.regulus.chart)
+- **Regulus Chart Astrology** — [Google Play](https://play.google.com/store/apps/details?id=dev.regulus.chart)
 - **수비학 계산기** — [Google Play](https://play.google.com/store/apps/details?id=com.numerology.finderapp)

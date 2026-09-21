@@ -1,14 +1,14 @@
 ---
-title: 레귤러스 차트 Privacy Policy
-description: "Regulus Chart 앱 개인정보처리방침."
+title: 레굴루스 차트 점성학 Privacy Policy
+description: "Regulus Chart Astrology 앱 개인정보처리방침."
 permalink: /privacy-regulus-chart/
 layout: single
 ---
 
-레귤러스 차트 Privacy Policy
+레굴루스 차트 점성학 Privacy Policy
 ================================
 
-This privacy policy applies to the 레귤러스 차트 (Regulus Chart) app (hereby referred to as "Application") for mobile devices that was created by Eyeregulus (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
+This privacy policy applies to the 레굴루스 차트 점성학 (Regulus Chart Astrology) app (hereby referred to as "Application") for mobile devices that was created by Eyeregulus (hereby referred to as "Service Provider") as a Free service. This service is intended for use "AS IS".
 
 ## Information Collection and Use
 
