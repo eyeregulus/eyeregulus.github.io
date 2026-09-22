@@ -14,7 +14,7 @@ Eyeregulus is committed to ensuring that the app is as useful and efficient as p
 
 The 레굴루스 차트 점성학 app stores and processes on your device the information you enter (such as a client's name, birth date, birth time, and birth city) in order to calculate and display astrology charts. This data stays on your device; it is not transmitted to Eyeregulus. It's your responsibility to keep your phone and access to the app secure. We therefore recommend that you do not jailbreak or root your phone, which is the process of removing software restrictions and limitations imposed by the official operating system of your device. It could make your phone vulnerable to malware/viruses/malicious programs, compromise your phone's security features, and could mean that the 레굴루스 차트 점성학 app won't work properly or at all.
 
-The app works fully offline and does not rely on third-party services that declare their own separate terms and conditions.
+All astrology chart calculation happens on-device and does not require an internet connection. The app does use Google Firebase Analytics (for anonymous usage/chart statistics) and RevenueCat (to process the one-time Pro purchase) when a connection is available — see the Privacy Policy (/privacy-regulus-chart/) for what each of them receives. Neither service receives any information about your clients.
 
 ## Astrology Disclaimer
 
@@ -26,13 +26,13 @@ There are certain things that Eyeregulus will not take responsibility for. Eyere
 
 Although we endeavour to ensure that the app is updated and correct at all times, astronomical calculations depend on bundled reference data, and Eyeregulus accepts no liability for any loss, direct or indirect, you experience as a result of relying wholly on this functionality of the app.
 
-At some point, we may wish to update the app. The app is currently available on Android – the system requirements (and any additional systems we decide to extend availability to) may change, and you'll need to download the updates if you want to keep using the app. Eyeregulus does not promise that it will always update the app so that it is relevant to you and/or works with the Android version installed on your device. However, you promise to always accept updates to the application when offered to you. We may also wish to stop providing the app, and may terminate its use at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination (a) the rights and licenses granted to you in these terms will end and (b) you must stop using the app and, if needed, delete it from your device.
+At some point, we may wish to update the app. The app is currently available on Android and iOS – the system requirements (and any additional systems we decide to extend availability to) may change, and you'll need to download the updates if you want to keep using the app. Eyeregulus does not promise that it will always update the app so that it is relevant to you and/or works with the operating system version installed on your device. However, you promise to always accept updates to the application when offered to you. We may also wish to stop providing the app, and may terminate its use at any time without giving notice of termination to you. Unless we tell you otherwise, upon any termination (a) the rights and licenses granted to you in these terms will end and (b) you must stop using the app and, if needed, delete it from your device.
 
 ## Changes to This Terms and Conditions
 
 We may update our Terms and Conditions from time to time. You are advised to review this page periodically for any changes. We will notify you of any changes by posting the new Terms and Conditions on this page.
 
-These terms and conditions are effective as of 2026-08-30
+These terms and conditions are effective as of 2026-09-22
 
 ## Contact Us
 

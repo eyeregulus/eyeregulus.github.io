@@ -61,6 +61,8 @@ The Application uses **Google Firebase Analytics** (Google LLC) for the anonymou
 
 Firebase Analytics assigns a randomly generated app instance identifier to each installation so that anonymous statistics can be counted consistently. This identifier is not linked to your name or to any account, and it is reset if you uninstall the Application.
 
+The Application uses **RevenueCat** (RevenueCat, Inc.) to process the one-time in-app purchase that unlocks Pro features. RevenueCat receives a randomly generated app user identifier and purchase/receipt information from Apple's or Google's app store in order to verify your purchase and keep it unlocked across reinstalls; it does not receive your name, birth information, or any client information you have entered. RevenueCat's privacy policy: https://www.revenuecat.com/privacy
+
 No other third-party service receives data from the Application. Because client information never leaves your device, the Service Provider has nothing to disclose to third parties and nothing to provide in response to a legal request regarding that information.
 
 ## Your Choices
