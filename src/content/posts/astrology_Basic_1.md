@@ -40,7 +40,7 @@ tags:
 | **하우스 (House)** | 그 에너지가 드러나는 삶의 영역 | *어디서* 작동하는가 |
 | **어스펙트 (Aspect)** | 행성끼리 맺는 각도, 즉 관계 | 서로 *협력*하나 *충돌*하나 |
 
-이 중 하우스와 상승궁(ASC)을 보려면 **정확한 출생 시간**이 반드시 필요합니다. 시간을 모른다면 [출생증명서를 발급받는 방법](/%ED%98%84%EB%8C%80%EC%A0%90%EC%84%B1%ED%95%99%20%EA%B3%B5%ED%86%B5/how-to-get-birth-certificate/)을 참고하세요. 차트를 직접 그려보고 싶다면 [Regulus Chart 앱](/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95/regulus-chart-app-usage/)으로 오프라인에서 그릴 수 있습니다.
+이 중 하우스와 상승궁(ASC)을 보려면 **정확한 출생 시간**이 반드시 필요합니다. 시간을 모른다면 [출생증명서를 발급받는 방법](/%ED%98%84%EB%8C%80%EC%A0%90%EC%84%B1%ED%95%99%20%EA%B3%B5%ED%86%B5/how-to-get-birth-certificate/)을 참고하세요. 차트를 직접 그려보고 싶다면 [Regulus Chart Astrology 앱](/%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98%20%EC%82%AC%EC%9A%A9%EB%B0%A9%EB%B2%95/regulus-chart-app-usage/)으로 오프라인에서 그릴 수 있습니다.
 
 ## 12별자리 한눈에
 

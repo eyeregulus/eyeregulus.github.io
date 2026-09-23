@@ -1,13 +1,13 @@
 ---
 date: 2026-08-30
-title: "Regulus Chart"
-description: "Regulus Chart 앱 사용법. 내담자 정보로 네이탈·트랜짓 차트를 오프라인에서 그리는 상담용 도구 — 임상 기록, 차트 휠, 시간 조절, 2링 트랜짓까지."
+title: "Regulus Chart Astrology"
+description: "Regulus Chart Astrology 앱 사용법. 내담자 정보로 네이탈·트랜짓 차트를 오프라인에서 그리는 상담용 도구 — 임상 기록, 차트 휠, 시간 조절, 2링 트랜짓까지."
 categories:
   - 어플리케이션 사용방법
 tags:
   - App
-  - Regulus Chart
-  - 레귤러스 차트
+  - Regulus Chart Astrology
+  - 레굴루스 차트 점성학
   - 네이탈 차트
   - 트랜짓 차트
   - Natal Chart
@@ -23,8 +23,8 @@ tags:
 pinned: true
 feature_row:
   - image_path: /assets/images/apps/regulus-chart.png
-    alt: "Regulus Chart"
-    title: "Regulus Chart"
+    alt: "Regulus Chart Astrology"
+    title: "Regulus Chart Astrology"
     excerpt: "네이탈·트랜짓 점성 차트를 오프라인에서 그려주는 상담용 앱입니다."
     url: "https://play.google.com/store/apps/details?id=dev.regulus.chart"
     btn_label: "Google Play"
@@ -36,11 +36,11 @@ feature_row:
     btn_label3: "이용약관"
     btn3_class: "btn--info"
 ---
-Regulus Chart (레귤러스 차트) 어플리케이션 사용방법에 대한 안내입니다.
+Regulus Chart Astrology (레굴루스 차트 점성학) 어플리케이션 사용방법에 대한 안내입니다.
 
 ---
 
-## ✨ Regulus Chart란?
+## ✨ Regulus Chart Astrology란?
 
 > **내담자의 출생 정보로 네이탈 차트를, 원하는 시점으로 트랜짓 차트를 그려주는 상담용 점성 도구**입니다.
 >
