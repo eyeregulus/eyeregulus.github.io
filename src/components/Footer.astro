@@ -4,10 +4,10 @@ import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
 
-// Fetch visitor counts at build time and bake them in as plain text. A live
+// Fetch the visitor total at build time and bake it in as plain text. A live
 // client-side fetch gets blocked by mobile content blockers / in-app browsers
 // (goatcounter.com is on tracker blocklists), so the count would vanish there.
-// Trade-off: the numbers are "as of the last deploy".
+// Trade-off: the number is "as of the last deploy".
 let visitCount: string | null = null;
 try {
   const res = await fetch(
@@ -22,33 +22,6 @@ try {
 } catch {
   /* service unreachable at build time — omit the counter */
 }
-
-// Today's count needs the authenticated GoatCounter API (no public endpoint
-// for a date range). Requires GOATCOUNTER_TOKEN (read-only API token) set as
-// a GitHub Actions secret; omitted entirely if the token isn't configured.
-let todayCount: string | null = null;
-const token = process.env.GOATCOUNTER_TOKEN;
-if (token) {
-  try {
-    const today = new Date().toISOString().slice(0, 10);
-    const res = await fetch(
-      `https://${GOATCOUNTER_CODE}.goatcounter.com/api/v0/stats/total?start=${today}&end=${today}`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-        signal: AbortSignal.timeout(4000),
-      },
-    );
-    if (res.ok) {
-      const data = await res.json();
-      const n = Number(data.total_unique ?? data.total);
-      if (Number.isFinite(n)) todayCount = n.toLocaleString('en-US');
-    } else {
-      console.error('[goatcounter] today fetch failed', res.status, await res.text());
-    }
-  } catch (e) {
-    console.error('[goatcounter] today fetch threw', e);
-  }
-}
 ---
 
 <footer class="foot">
@@ -60,12 +33,8 @@ if (token) {
       <a href="#" onclick="openTermsModal(); return false;">이용약관</a>
     </span>
   </div>
-  {(todayCount || visitCount) && (
-    <div class="foot__hits">
-      {todayCount && <>Today <b>{todayCount}</b></>}
-      {todayCount && visitCount && <> / </>}
-      {visitCount && <>LTD <b>{visitCount}</b></>}
-    </div>
+  {visitCount && (
+    <div class="foot__hits">LTD <b>{visitCount}</b></div>
   )}
 </footer>
 
