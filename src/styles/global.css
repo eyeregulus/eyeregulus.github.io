@@ -104,9 +104,6 @@ hr {
   color: var(--head);
   letter-spacing: 0.01em;
 }
-.brand .r {
-  color: var(--gold);
-}
 
 .masthead nav {
   display: flex;

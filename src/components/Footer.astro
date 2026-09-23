@@ -4,6 +4,10 @@ import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
 
+const LAUNCH_DATE = new Date('2026-06-19T00:00:00Z');
+const dayCount =
+  Math.floor((Date.now() - LAUNCH_DATE.getTime()) / 86_400_000) + 1;
+
 // Fetch the visitor total at build time and bake it in as plain text. A live
 // client-side fetch gets blocked by mobile content blockers / in-app browsers
 // (goatcounter.com is on tracker blocklists), so the count would vanish there.
@@ -33,9 +37,10 @@ try {
       <a href="#" onclick="openTermsModal(); return false;">이용약관</a>
     </span>
   </div>
-  {visitCount && (
-    <div class="foot__hits">방문 <b>{visitCount}</b></div>
-  )}
+  <div class="foot__hits">
+    D+{dayCount}
+    {visitCount && <> &middot; 방문 <b>{visitCount}</b></>}
+  </div>
 </footer>
 
 <Modals />
