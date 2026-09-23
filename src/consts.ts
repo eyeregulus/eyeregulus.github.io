@@ -111,11 +111,9 @@ export const APPS = [
 // Kept deliberately short: one tap-target per line, no sub-text.
 // Order = tap order on the page and the ItemList in schema.
 export const HUB_LINKS: { label: string; url: string }[] = [
-  { label: '블로그', url: '/' },
+  { label: '홈페이지', url: '/' },
   { label: '앱', url: '/apps/' },
   { label: 'YouTube', url: YOUTUBE_URL },
-  { label: 'X', url: X_URL },
-  { label: '이메일', url: 'mailto:eyeregulus@gmail.com' },
 ];
 
 // One-line blurb per category, shown on the home index.

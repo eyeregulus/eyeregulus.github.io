@@ -1,5 +1,5 @@
 ---
-import { SITE, YOUTUBE_URL, X_URL, GOATCOUNTER_CODE } from '../consts';
+import { SITE, GOATCOUNTER_CODE } from '../consts';
 import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
@@ -29,9 +29,6 @@ try {
     <span>&copy; {year} {SITE.title}</span>
     <span>
       <a href="/links/">링크 모음</a> &nbsp;
-      <a href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">YouTube</a> &nbsp;
-      <a href="mailto:eyeregulus@gmail.com">Email</a> &nbsp;
-      <a href={X_URL} target="_blank" rel="me noopener noreferrer">X</a> &nbsp;
       <a href="#" onclick="openPrivacyModal(); return false;">개인정보처리방침</a> &nbsp;
       <a href="#" onclick="openTermsModal(); return false;">이용약관</a>
     </span>
