@@ -9,7 +9,7 @@ feature_row:
 - image_path: /assets/images/apps/void-of-course.png
   alt: Void of course
   title: Void of course
-  excerpt: 달의 공허 시간을 알려주는 어플리케이션입니다.
+  excerpt: 달의 보이드 시간, 10행성의 역행,순행 택일 전문 앱
   url: https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse
   btn_label: Google Play
   btn_class: btn--primary
@@ -28,7 +28,7 @@ feature_row:
 - image_path: /assets/images/apps/numerology.png
   alt: Numerology
   title: Numerology
-  excerpt: 수비학 계산을 쉽게 할 수 있는 계산기입니다.
+  excerpt: 피타고라스 수비학 계산기 앱
   url: https://play.google.com/store/apps/details?id=com.numerology.finderapp
   btn_label: Google Play
   btn_class: btn--primary
@@ -44,7 +44,7 @@ feature_row:
 - image_path: /assets/images/apps/regulus-chart.png
   alt: Regulus Chart Astrology
   title: Regulus Chart Astrology
-  excerpt: 네이탈·트랜짓 점성 차트를 오프라인에서 그려주는 상담용 앱입니다.
+  excerpt: 네이탈·트랜짓·프로그래션 차트를 오프라인에서 그려주는 앱
   url: https://play.google.com/store/apps/details?id=dev.regulus.chart
   btn_label: Google Play
   btn_class: btn--primary
