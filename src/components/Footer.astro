@@ -4,14 +4,10 @@ import Modals from './Modals.astro';
 
 const year = new Date().getFullYear();
 
-const LAUNCH_DATE = new Date('2026-06-19T00:00:00Z');
-const dayCount =
-  Math.floor((Date.now() - LAUNCH_DATE.getTime()) / 86_400_000) + 1;
-
-// Fetch the visitor total at build time and bake it in as plain text. A live
+// Fetch visitor counts at build time and bake them in as plain text. A live
 // client-side fetch gets blocked by mobile content blockers / in-app browsers
 // (goatcounter.com is on tracker blocklists), so the count would vanish there.
-// Trade-off: the number is "as of the last deploy".
+// Trade-off: the numbers are "as of the last deploy".
 let visitCount: string | null = null;
 try {
   const res = await fetch(
@@ -26,6 +22,31 @@ try {
 } catch {
   /* service unreachable at build time — omit the counter */
 }
+
+// Today's count needs the authenticated GoatCounter API (no public endpoint
+// for a date range). Requires GOATCOUNTER_TOKEN (read-only API token) set as
+// a GitHub Actions secret; omitted entirely if the token isn't configured.
+let todayCount: string | null = null;
+const token = process.env.GOATCOUNTER_TOKEN;
+if (token) {
+  try {
+    const today = new Date().toISOString().slice(0, 10);
+    const res = await fetch(
+      `https://${GOATCOUNTER_CODE}.goatcounter.com/api/v0/stats/total?start=${today}&end=${today}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(4000),
+      },
+    );
+    if (res.ok) {
+      const data = await res.json();
+      const n = Number(data.total_unique ?? data.total);
+      if (Number.isFinite(n)) todayCount = n.toLocaleString('en-US');
+    }
+  } catch {
+    /* service unreachable at build time — omit today's count */
+  }
+}
 ---
 
 <footer class="foot">
@@ -37,10 +58,13 @@ try {
       <a href="#" onclick="openTermsModal(); return false;">이용약관</a>
     </span>
   </div>
-  <div class="foot__hits">
-    D+{dayCount}
-    {visitCount && <> &middot; 방문 <b>{visitCount}</b></>}
-  </div>
+  {(todayCount || visitCount) && (
+    <div class="foot__hits">
+      {todayCount && <>오늘 <b>{todayCount}</b></>}
+      {todayCount && visitCount && <> &middot; </>}
+      {visitCount && <>누적 <b>{visitCount}</b></>}
+    </div>
+  )}
 </footer>
 
 <Modals />
