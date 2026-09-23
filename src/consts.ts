@@ -1,7 +1,7 @@
 // Site-wide configuration ported from the old Jekyll _config.yml / _data.
 
 export const SITE = {
-  title: 'Eyeregulus',
+  title: 'Eye regulus',
   titleSeparator: '-',
   name: 'eyeregulus',
   description:
@@ -72,7 +72,6 @@ export const GOATCOUNTER_CODE = 'eyeregulusdev';
 export const MAIN_NAV = [
   { title: 'About', url: '/about/' },
   { title: 'Apps', url: '/apps/' },
-  { title: 'YouTube', url: YOUTUBE_URL, external: true },
 ];
 
 // Apps featured on the home page. Icons live in public/assets/images/apps/.

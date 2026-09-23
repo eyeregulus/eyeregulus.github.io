@@ -650,14 +650,12 @@ a.app__name:hover {
   max-width: 60rem;
   margin: 0 auto;
   padding: 0 clamp(1.25rem, 5vw, 2.5rem) 2.5rem;
-  font-family: var(--mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  color: var(--gold-dim);
+  font-size: 0.78rem;
+  color: var(--dim);
 }
 .foot__hits b {
-  color: var(--gold);
-  font-weight: 500;
+  color: var(--dim);
+  font-weight: 400;
   font-variant-numeric: tabular-nums;
 }
 
