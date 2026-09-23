@@ -42,9 +42,11 @@ if (token) {
       const data = await res.json();
       const n = Number(data.total_unique ?? data.total);
       if (Number.isFinite(n)) todayCount = n.toLocaleString('en-US');
+    } else {
+      console.error('[goatcounter] today fetch failed', res.status, await res.text());
     }
-  } catch {
-    /* service unreachable at build time — omit today's count */
+  } catch (e) {
+    console.error('[goatcounter] today fetch threw', e);
   }
 }
 ---
@@ -60,9 +62,9 @@ if (token) {
   </div>
   {(todayCount || visitCount) && (
     <div class="foot__hits">
-      {todayCount && <>오늘 <b>{todayCount}</b></>}
-      {todayCount && visitCount && <> &middot; </>}
-      {visitCount && <>누적 <b>{visitCount}</b></>}
+      {todayCount && <>Today <b>{todayCount}</b></>}
+      {todayCount && visitCount && <> / </>}
+      {visitCount && <>LTD <b>{visitCount}</b></>}
     </div>
   )}
 </footer>
