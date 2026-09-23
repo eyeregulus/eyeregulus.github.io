@@ -27,7 +27,7 @@ feature_row:
   - image_path: /assets/images/apps/void-of-course.png
     alt: "Void of course"
     title: "Void of course"
-    excerpt: "달의 공허 시간을 알려주는 어플리케이션입니다."
+    excerpt: "달의 보이드 시간을 알려주는 어플리케이션입니다."
     url: "https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse"
     btn_label: "Google Play"
     btn_class: "btn--primary"

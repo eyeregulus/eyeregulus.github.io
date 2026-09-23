@@ -191,9 +191,9 @@ hr {
 }
 .channel__label {
   grid-column: 1;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--serif-kr);
+  font-size: 0.82rem;
+  font-style: italic;
   color: var(--gold);
 }
 .channel__title {
@@ -230,7 +230,7 @@ hr {
 .apps {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--gold-dim);
+  border-top: 1px solid var(--border);
 }
 
 .app {
@@ -302,7 +302,7 @@ a.app__name:hover {
 .cats {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--gold-dim);
+  border-top: 1px solid var(--border);
 }
 
 .cat {
@@ -424,9 +424,9 @@ a.app__name:hover {
   line-height: 1.6;
 }
 .side__label {
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--serif-kr);
+  font-size: 0.86rem;
+  font-style: italic;
   color: var(--gold-dim);
   margin-bottom: 0.6rem;
 }
@@ -574,7 +574,7 @@ a.app__name:hover {
 .tags {
   margin-top: 3rem;
   padding-top: 1.4rem;
-  border-top: 1px solid var(--gold-dim);
+  border-top: 1px solid var(--border);
   font-size: 0.85rem;
   color: var(--dim);
 }
@@ -608,10 +608,9 @@ a.app__name:hover {
 }
 .pn .k {
   display: block;
-  font-family: var(--sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  font-family: var(--serif-kr);
+  font-size: 0.82rem;
+  font-style: italic;
   color: var(--gold-dim);
   margin-bottom: 0.25rem;
 }
@@ -667,7 +666,7 @@ a.app__name:hover {
 .feature__wrapper {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--gold-dim);
+  border-top: 1px solid var(--border);
   margin: 1.5rem 0 0;
 }
 .feature__item .archive__item {
