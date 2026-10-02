@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void of Course — 보이드 시간 알림 앱</title>
+<meta name="description" content="달의 보이드 오브 코스 시간, 10행성 역행·순행을 알려주는 택일 앱. Google Play · App Store 무료 다운로드.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eyeregulus.dev/voc/">
+<meta property="og:title" content="🌙 Void of Course — 보이드 시간 알림 앱">
+<meta property="og:description" content="보이드 시작·종료 알림, 보이드 캘린더, 행성 역행까지. 무료로 받아보세요.">
+<meta property="og:image" content="https://eyeregulus.dev/assets/images/apps/void-of-course.png">
+<meta name="twitter:card" content="summary">
+<link rel="canonical" href="https://eyeregulus.dev/voc/">
+<style>
+  :root { --bg:#F8F6F0; --card:#fff; --ink:#1A1A2E; --soft:#6B7280; --accent:#2C3E50; --gold:#D4AF37; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#16181D; --card:#1E2128; --ink:#F5F3EE; --soft:#C7C4BC; --accent:#EDEDED; } }
+  * { box-sizing:border-box; }
+  body { margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px 16px; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif; }
+  main { width:100%; max-width:380px; background:var(--card); border-radius:24px; padding:32px 24px; text-align:center; box-shadow:0 8px 24px rgba(0,0,0,.08); }
+  img { width:96px; height:96px; border-radius:22px; }
+  h1 { font-size:22px; margin:16px 0 6px; }
+  p { color:var(--soft); font-size:14px; line-height:1.6; margin:0 0 24px; }
+  a.btn { display:block; padding:14px; margin-top:10px; border-radius:14px; background:var(--accent); color:var(--bg); font-weight:700; text-decoration:none; }
+  a.btn.alt { background:transparent; color:var(--accent); border:1.5px solid var(--accent); }
+  small { display:block; margin-top:20px; color:var(--soft); font-size:12px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="/assets/images/apps/void-of-course.png" alt="Void of Course">
+  <h1>🌙 Void of Course</h1>
+  <p>보이드 시작·종료 알림, 보이드 캘린더,<br>10행성 역행·순행까지 한 앱에서.</p>
+  <a class="btn" id="play" href="https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse">Google Play에서 받기</a>
+  <a class="btn alt" id="ios" href="https://apps.apple.com/app/id6777887938">App Store에서 받기</a>
+  <small>eyeregulus.dev</small>
+</main>
+<script>
+  // 공유 링크(?s=card|calendar)로 들어오면 기기에 맞는 스토어로 바로 보낸다.
+  // Play 는 referrer UTM 으로 Play Console 획득 보고서에서 설치 출처가 잡힌다.
+  (function () {
+    var s = new URLSearchParams(location.search).get('s') || 'link';
+    if (!/^[a-z_]{1,20}$/.test(s)) s = 'link';
+    var play = 'https://play.google.com/store/apps/details?id=dev.lioluna.voidofcourse&referrer=' +
+      encodeURIComponent('utm_source=voc_share&utm_medium=' + s + '&utm_campaign=share');
+    var ios = 'https://apps.apple.com/app/id6777887938';
+    document.getElementById('play').href = play;
+    try { navigator.sendBeacon('https://eyeregulusdev.goatcounter.com/count?p=' + encodeURIComponent('/voc/' + s) + '&r=' + encodeURIComponent(document.referrer)); } catch (e) {}
+    var ua = navigator.userAgent;
+    if (/android/i.test(ua)) { location.replace(play); }
+    else if (/iphone|ipad|ipod/i.test(ua) || (/macintosh/i.test(ua) && navigator.maxTouchPoints > 1)) { location.replace(ios); }
+  })();
+</script>
+</body>
+</html>
